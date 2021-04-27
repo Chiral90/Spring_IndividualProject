@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.fp.mapper.UserMapper">
+	
+	<!-- 정보 등록 시 해당 사업자의 테이블 생성 -->
+	<select id="createUserTable" resultType="java.util.Map" parameterType="java.lang.String">
+		${value}
+ 	</select>
+ 	
+ 	<!-- 정보 신규 등록 -->
+ 	<insert id="registerUser">
+ 		insert into user (bizNo, corpName, pw, lati, longi, phoneNo, sectors)
+ 		values ( #{bizNo}, #{corpName}, #{pw}, #{lati}, #{longi}, #{phoneNo}, #{sectors})
+ 	</insert>
+	
+	<insert id="insert">
+		insert into u#{bizNo} (title, content, writer, regdate)
+		values ( #{title}, #{content}, #{writer}, curdate())
+	</insert>
+	
+
+</mapper>

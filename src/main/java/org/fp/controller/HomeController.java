@@ -36,4 +36,11 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public String main(Model model) {
+		logger.info("Main Page....");
+		
+		return "main";
+	}
+	
 }

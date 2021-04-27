@@ -1,0 +1,4 @@
+@charset "UTF-8";
+.d-flex {display: flex; justify-content: center;}
+.cover-container:nth-child(1) {background: #ff80ff; padding: 0 0;}
+.cover-container:nth-child(2) {background: #80ff80; padding: 0 0;}
