@@ -10,7 +10,7 @@
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">방문 기록</h1>
+        <h1 class="h2">방문 기록</h1><h1>${user.bizNo }</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
             <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -29,76 +29,38 @@
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Header</th>
-              <th>Header</th>
+              <th>순서</th>
+              <th>이름</th>
+              <th>주소</th>
+              <th>연락처</th>
+              <th>체온</th>
+              <th>방문시각</th>
+              <th>비고</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1,001</td>
-              <td>random</td>
-              <td>data</td>
-              <td>placeholder</td>
-              <td>text</td>
-            </tr>
-            <tr>
-              <td>1,002</td>
-              <td>placeholder</td>
-              <td>irrelevant</td>
-              <td>visual</td>
-              <td>layout</td>
-            </tr>
-            <tr>
-              <td>1,003</td>
-              <td>data</td>
-              <td>rich</td>
-              <td>dashboard</td>
-              <td>tabular</td>
-            </tr>
-            <tr>
-              <td>1,003</td>
-              <td>information</td>
-              <td>placeholder</td>
-              <td>illustrative</td>
-              <td>data</td>
-            </tr>
-            <tr>
-              <td>1,004</td>
-              <td>text</td>
-              <td>random</td>
-              <td>layout</td>
-              <td>dashboard</td>
-            </tr>
-            <tr>
-              <td>1,005</td>
-              <td>dashboard</td>
-              <td>irrelevant</td>
-              <td>text</td>
-              <td>placeholder</td>
-            </tr>
-            <tr>
-              <td>1,006</td>
-              <td>dashboard</td>
-              <td>illustrative</td>
-              <td>rich</td>
-              <td>data</td>
-            </tr>
-            <tr>
-              <td>1,007</td>
-              <td>placeholder</td>
-              <td>tabular</td>
-              <td>information</td>
-              <td>irrelevant</td>
-            </tr>
+              <c:forEach items="${list}" var="board">
+	           	<tr>
+	           		<td><c:out value="${board.bno }" /></td>
+	           		<td><c:out value="${board.name }" /></td>
+	           		<td><c:out value="${board.addr }" /></td>
+	           		<td><c:out value="${board.phoneNo }" /></td>
+	           		<td><c:out value="${board.temp }" /></td>
+	           		<td><c:out value="${board.regdate }" /></td>
+	           		<td><c:out value="${board.updateDate }" /></td>
+	           		<td></td>
+	           		<!-- date formatting 필요 @mysql -->                     		
+	           		<%-- 
+	           		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate }"></fmt:formatDate></td>
+	           		<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate }"></fmt:formatDate></td>
+	           		 --%>
+	           	</tr>
+	           </c:forEach>
           </tbody>
         </table>
       </div>
     </main>
-  </div>
-</div>
+
 
 
     <script src="/resources/js/bootstrap.bundle.min.js"></script>

@@ -26,7 +26,7 @@ public class UserServiceTests {
 		log.info(service);
 	}
 	
-	@Test
+	//@Test
 	public void testCreate() {
 		log.info("Create Test....");
 		UserVO user = new UserVO();
@@ -43,6 +43,14 @@ public class UserServiceTests {
 		//map.put("value", sql);
 		
 		service.registerUser(user, sql);
+	}
+	@Test
+	public void testList() {
+		log.info("Board List Test....");
+		UserVO user = new UserVO();
+		user.setBizNo("6429200357");
+		
+		log.info(service.boardList(user));
 	}
 
 }

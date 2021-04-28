@@ -62,14 +62,14 @@
 
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">사업자 정보 등록 양식</h4>
-        <form class="needs-validation" novalidate action="/user/insert" method="post">
+        <form class="needs-validation" novalidate action="/user/register" method="post">
           <div class="row g-3">
             
 			<div class="col-12">
               <label for="corpName" class="form-label">상호명</label>
               <div class="input-group has-validation">
                 
-                <input type="text" class="form-control" id="corpName" name="corpName" placeholder="그린 컴퓨터 아카데미" required>
+                <input type="text" class="form-control" id="corpName" name="corpName" placeholder="" value="그린 컴퓨터 아카데미" required>
                 <div class="invalid-feedback">
                  	상호명은 필수 입력입니다.
                 </div>
@@ -80,7 +80,7 @@
               <label for="bizNo" class="form-label">사업자 번호 (ID)</label>
               <div class="input-group has-validation">
                 
-                <input type="text" class="form-control" id="bizNo" name="bizNo" placeholder="'-'를 제외한 10자리 숫자" required>
+                <input type="text" class="form-control" id="bizNo" name="bizNo" placeholder="" value="6429200357" required>
                 <div class="invalid-feedback">
                  	 사업자 번호는 필수 입력입니다.
                 </div>
@@ -89,15 +89,15 @@
 
             <div class="col-12">
               <label for="pw" class="form-label">패스워드</label>
-              <input type="password" class="form-control" id="pw" name="pw" placeholder="패스워드 패턴 안내" required>
+              <input type="password" class="form-control" id="pw" name="pw" value="1234" required>
               <div class="invalid-feedback">
                 	패스워드는 필수 입력입니다.
               </div>
             </div>
-
+            
             <div class="col-sm-6">
               <label for="lati" class="form-label">위도</label>
-              <input type="text" class="form-control" id="lati" name="lati" placeholder="" value="" required>
+              <input type="text" class="form-control" id="lati" name="lati" placeholder="" value="35.54314144195848" required>
                 <div class="invalid-feedback">
                 	위도는 필수 입력입니다.
               </div>
@@ -105,7 +105,7 @@
 
             <div class="col-sm-6">
               <label for="longi" class="form-label">경도</label>
-              <input type="text" class="form-control" id="longi" name="longi" placeholder="" value="" required>
+              <input type="text" class="form-control" id="longi" name="longi" placeholder="" value="129.3387265285293" required>
                 <div class="invalid-feedback">
                	 경도는 필수 입력입니다.
               </div>
@@ -115,7 +115,7 @@
               <label for="phoneNo" class="form-label">사업자 연락처</label>
               <div class="input-group has-validation">
                 
-                <input type="text" class="form-control" id="phoneNo" name="phoneNo" placeholder="'-'를 제외하고 입력" required>
+                <input type="text" class="form-control" id="phoneNo" name="phoneNo" placeholder="'-'를 제외하고 입력" value="01012345678" required>
                 <div class="invalid-feedback">
                  	연락처는 필수 입력입니다.
                 </div>
@@ -138,10 +138,12 @@
           <hr class="my-4">
 
           <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+         
         </form>
       </div>
+     </main>
     </div>
-  </main>
+
   
   
 <!-- footer -->

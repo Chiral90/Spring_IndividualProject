@@ -61,7 +61,7 @@
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
         <div class="container">
           <div class="carousel-caption text-end">
-            <h1>정상입니다</h1>
+            <h1>36.5 정상입니다</h1>
             </div>
         </div>
       </div>
@@ -70,7 +70,7 @@
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
         <div class="container">
           <div class="carousel-caption">
-            <h1>다시 측정하세요</h1>
+            <h1>38.5 다시 측정하세요</h1>
           </div>
         </div>
       </div>
@@ -85,7 +85,6 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-
 
   <!-- Marketing messaging and featurettes
   ================================================== -->
@@ -117,5 +116,65 @@
   </div><!-- /.container -->
 
 
-  <!-- FOOTER -->
+  <!-- 인서트 테스트 영역 -->
+
+  
+  	<div class="test">
+  	  <style>
+    .test main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+    </style>
+  <main>
+    <div class="py-5 text-center">
+      <!-- <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+      <h2>체온 측정 테스트</h2>
+    </div>
+
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">체온 측정 테스트</h4>
+        <form class="needs-validation" novalidate action="/user/insertData" method="post">
+          <div class="row g-3">
+            
+            <div class="col-12">
+              <label for="bizNo" class="form-label">사업자 번호</label>
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" id="bizNo" name="bizNo" value="${user.bizNo }" readonly>
+              </div>
+			<div class="col-12">
+              <label for="name" class="form-label">이름</label>
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" id="name" name="name" value="손동진">
+              </div>
+            </div>
+			<div class="col-12">
+              <label for="addr" class="form-label">주소</label>
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" id="addr" name="addr" value="울산 북구 강동동">
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="phoneNo" class="form-label">전화번호</label>
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" id="phoneNo" name="phoneNo" value="01012345678">
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="temp" class="form-label">체온</label>
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" id="temp" name="temp" value="36.5">
+              </div>
+            </div>
+           
+
+          <hr class="my-4">
+
+          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+         
+        </form>
+      </div>
+     </main>
+    </div>
 

@@ -16,10 +16,21 @@
  		values ( #{bizNo}, #{corpName}, #{pw}, #{lati}, #{longi}, #{phoneNo}, #{sectors})
  	</insert>
 	
-	<insert id="insert">
-		insert into u#{bizNo} (title, content, writer, regdate)
-		values ( #{title}, #{content}, #{writer}, curdate())
+	<!-- 방문객 데이터 등록 -->
+	<insert id="insertData">
+		insert into united_board (bizNo, name, addr, phoneNo, temp, regdate)
+		values ( #{bizNo}, #{name}, #{addr}, #{phoneNo}, #{temp}, now() )
 	</insert>
+	
+	<!-- 로그인 세션용 조회 -->
+	<select id="login" resultType="org.fp.domain.UserVO">
+		select * from user where bizNo = #{bizNo} and pw = #{pw}
+	</select>
+	
+	<!-- 오늘 방문 기록 -->
+	<select id="boardList" resultType="org.fp.domain.BoardVO" parameterType="org.fp.domain.UserVO">
+		select * from united_board where bizNo = #{bizNo} and regdate = curdate()
+	</select>
 	
 
 </mapper>

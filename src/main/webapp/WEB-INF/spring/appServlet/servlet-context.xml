@@ -23,6 +23,8 @@
 	
 	
 	<context:component-scan base-package="org.fp.controller" />
+	<context:component-scan base-package="org.fp.service" />
+	<context:component-scan base-package="org.fp.mapper" />
 	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"></beans:bean>
 	
