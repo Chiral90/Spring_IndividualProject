@@ -24,7 +24,12 @@
     <link href="/resources/css/cover.css" rel="stylesheet">
     <link href="/resources/css/main_custom.css" rel="stylesheet">
     
-    <body class="d-flex h-100 text-center text-white bg-dark">
+    <body class="d-flex h-100 text-center text-white bg-dark"
+    style="background-image: url('/resources/img/main.jpg');
+		    background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			background-blend-mode: overlay;">
     
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 

@@ -3,35 +3,18 @@
     pageEncoding="UTF-8"%>
 <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
 <!-- Bootstrap core CSS -->
-<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/css/bootstrap.min.css" rel="stylesheet">    
+<!-- Custom styles for this template -->
+<link href="/resources/css/carousel.css" rel="stylesheet">
+<!-- Custom js -->
+<script type="text/javascript" src="/resources/js/measure.js"></script>
 
-    <style>
-    	
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="/resources/css/carousel.css" rel="stylesheet">
-  </head>
   <body>
 
 
 <main>
 <style>body {padding: 0 0;}</style>
-  <div id="myCarousel" class="carousel slide" data-interval="false">
+  <div id="myCarousel" class="carousel slide">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -94,23 +77,33 @@
 
     <!-- Three columns of text below the carousel -->
     <div class="row">
+    <form>
+     <input type="hidden" id="bizNo" name="bizNo" value="${user.bizNo }">
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <rect width="100%" height="100%" fill="#FF0000"/><text x="50%" y="50%" fill="#777" dy=".3em"></text>
+        <input type="hidden" id="name" name="name"/>
+        <input type="hidden" id="addr" name="addr"/>
+        <input type="hidden" id="phoneNo" name="phoneNo"/></svg>
         <h2>Step1</h2>
 
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <rect width="100%" height="100%" fill="#FF0000"/><text x="50%" y="50%" fill="#777" dy=".3em"></text>
+        <input type="hidden" id="temp" name="temp"></svg>
 
         <h2>Step2</h2>
 
       </div><!-- /.col-lg-4 -->
       <div class="col-lg-4">
-        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <rect width="100%" height="100%" fill="#FF0000"/>
+        <text x="50%" y="50%" fill="#777" dy=".3em"></text></svg>
 
         <h2>Step3</h2>
       </div><!-- /.col-lg-4 -->
+      </form>
     </div><!-- /.row -->
 
   </div><!-- /.container -->
@@ -146,25 +139,25 @@
 			<div class="col-12">
               <label for="name" class="form-label">이름</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" id="name" name="name" value="손동진">
+                <input type="text" class="form-control" id="psuedoName" name="name" value="Dongjin Son">
               </div>
             </div>
 			<div class="col-12">
               <label for="addr" class="form-label">주소</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" id="addr" name="addr" value="울산 북구 강동동">
+                <input type="text" class="form-control" id="psuedoAddr" name="addr" value="Ulsan">
               </div>
             </div>
             <div class="col-12">
               <label for="phoneNo" class="form-label">전화번호</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" id="phoneNo" name="phoneNo" value="01012345678">
+                <input type="text" class="form-control" id="psuedoPhoneNo" name="phoneNo" value="01082351119">
               </div>
             </div>
             <div class="col-12">
               <label for="temp" class="form-label">체온</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" id="temp" name="temp" value="36.5">
+                <input type="text" class="form-control" id="psuedoTemp" name="temp" value="36.5">
               </div>
             </div>
            

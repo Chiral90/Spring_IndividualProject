@@ -30,7 +30,7 @@
 <script>
       $(document).ready(function(){
     	  var f = $("#form")
-    	  console.log(f);
+    	  //console.log(f);
     	  $("#signout").on("click", function(e){
     		  e.preventDefault();
     		  f.attr("action", "/user/signout")
@@ -38,3 +38,4 @@
     	  })
       });
 </script>
+</div>

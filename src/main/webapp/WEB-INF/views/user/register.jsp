@@ -1,47 +1,8 @@
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.82.0">
-    <title>Checkout example · Bootstrap v5.0</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
-
-    
-
-    <!-- Bootstrap core CSS -->
-<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="/resources/css/form-validation.css" rel="stylesheet">
-</head> --%>
 <%@ include file="../includes/header.jsp" %>
 <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/resources/css/form-validation.css" rel="stylesheet">
+<script type="text/javascript" src="/resources/js/register.js"></script>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <body class="bg-light">
@@ -68,7 +29,6 @@
 			<div class="col-12">
               <label for="corpName" class="form-label">상호명</label>
               <div class="input-group has-validation">
-                
                 <input type="text" class="form-control" id="corpName" name="corpName" placeholder="" value="그린 컴퓨터 아카데미" required>
                 <div class="invalid-feedback">
                  	상호명은 필수 입력입니다.
@@ -81,18 +41,15 @@
               <div class="input-group has-validation">
                 
                 <input type="text" class="form-control" id="bizNo" name="bizNo" placeholder="" value="6429200357" required>
-                <div class="invalid-feedback">
-                 	 사업자 번호는 필수 입력입니다.
-                </div>
+                <div></div>
               </div>
             </div>
 
             <div class="col-12">
               <label for="pw" class="form-label">패스워드</label>
               <input type="password" class="form-control" id="pw" name="pw" value="1234" required>
-              <div class="invalid-feedback">
-                	패스워드는 필수 입력입니다.
-              </div>
+              <div></div>
+            
             </div>
             
             <div class="col-sm-6">
@@ -101,6 +58,7 @@
                 <div class="invalid-feedback">
                 	위도는 필수 입력입니다.
               </div>
+              
             </div>
 
             <div class="col-sm-6">
@@ -109,6 +67,7 @@
                 <div class="invalid-feedback">
                	 경도는 필수 입력입니다.
               </div>
+              
             </div>
             
             <div class="col-12">
@@ -116,8 +75,7 @@
               <div class="input-group has-validation">
                 
                 <input type="text" class="form-control" id="phoneNo" name="phoneNo" placeholder="'-'를 제외하고 입력" value="01012345678" required>
-                <div class="invalid-feedback">
-                 	연락처는 필수 입력입니다.
+                <div></div>
                 </div>
               </div>
             </div>
