@@ -1,7 +1,5 @@
 package org.fp.controller;
 
-import java.util.Objects;
-
 import javax.servlet.http.HttpSession;
 
 import org.fp.domain.BoardVO;
@@ -27,28 +25,38 @@ public class UserController {
 	private UserService service;
 	
 	//로그인 페이지로 화면 이동
+	@GetMapping("/login")
+	public String signIn(HttpSession session) {
+		if (session.getAttribute("user") != null) {
+			log.info("이미 접속 중입니다.");
+			return "redirect:/user/measure";
+		} else {
+			
+			return "redirect:/user/signin";
+		}
+	}
+	
 	@GetMapping("/signin")
 	public void signIn() {
-		
+		log.info("새로운 사용자");
 	}
 	
 	@PostMapping("/signin")
 	public String login(UserVO user, HttpSession session) {
 		log.info("user login....");
 		//user의 데이터와 일치하는 db상의 데이터 검색해서 vo에 저장
-		UserVO vo = service.login(user);
-		log.info("vo : " + vo + " @Controller");
-		//user의 데이터를 세션 영역의 user 변수에 저장
-		session.setAttribute("user", vo);
-		if (vo.getBizNo().equals("admin")) vo.setAdmin(true);
-		
-		if(session.getAttribute("user") != null) {
-			log.info("로그인 성공");
-			return "redirect:/user/measure";
-		} else {
-			return "redirect:/user/signin";
-		}
-		
+			UserVO vo = service.login(user);
+			log.info("vo : " + vo + " @Controller");
+			//user의 데이터를 세션 영역의 user 변수에 저장
+			session.setAttribute("user", vo);
+			if (vo.getBizNo().equals("admin")) vo.setAdmin(true);
+			
+			if(session.getAttribute("user") != null) {
+				log.info("로그인 성공");
+				return "redirect:/user/measure";
+			} else {
+				return "/user/signin";
+			}		
 	}
 	
 	@PostMapping("/signout")
@@ -84,8 +92,8 @@ public class UserController {
 	
 	//회원 가입 페이지로 화면 이동
 	@GetMapping("/register")
-	public void resgister() {
-		
+	public void resgister(HttpSession session) {
+		session.removeAttribute("user");
 	}
 		
 	//회원 가입 제출, db insert

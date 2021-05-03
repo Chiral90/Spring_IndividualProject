@@ -6,13 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <body class="bg-light">
-    <style>
-    main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    }
-    </style>
+
 <div class="container">
   <main>
     <div class="py-5 text-center">

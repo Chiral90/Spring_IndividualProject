@@ -1,4 +1,10 @@
 @charset "UTF-8";
+.div {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 main {
-    margin: 0 0;
+	margin: auto auto;
 }

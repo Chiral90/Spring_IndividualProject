@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/resources/js/header.js"></script>
 </head>
 <body>
 <div class="container">
@@ -23,19 +24,9 @@
       <li class="nav-item"><a href="/user/board" class="nav-link">방문 기록</a></li>
       <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
       <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-      <li class="nav-item"><a href="#" id="signout" class="nav-link">로그아웃</a>
+      <li class="nav-item"><a href="#" id="sign" class="nav-link">#</a>
       <form id="form"><input type="hidden"></form></li>
     </ul>
+    <input type="hidden" id="user" name="user" value=<c:out value='${user.bizNo }' /> >
 </header>
-<script>
-      $(document).ready(function(){
-    	  var f = $("#form")
-    	  //console.log(f);
-    	  $("#signout").on("click", function(e){
-    		  e.preventDefault();
-    		  f.attr("action", "/user/signout")
-    		  .attr("method", "post").submit();
-    	  })
-      });
-</script>
 </div>

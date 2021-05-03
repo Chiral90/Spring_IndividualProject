@@ -52,7 +52,7 @@
     <h1>로그인</h1>
     <p class="lead">정보 등록 완료한 사업자는 로그인 후 시스템 사용</p>
     <p class="lead">
-      <a href="/user/signin" class="btn btn-lg btn-secondary fw-bold border-white bg-white">로그인</a>
+      <a href="/user/login" class="btn btn-lg btn-secondary fw-bold border-white bg-white">로그인</a>
     </p>
 
   </main>
