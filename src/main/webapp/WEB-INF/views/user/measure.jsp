@@ -11,7 +11,6 @@
 
   <body>
 
-
 <main>
 <style>body {padding: 0 0;}</style>
   <div id="myCarousel" class="carousel slide">
@@ -25,7 +24,8 @@
       <div class="carousel-item active">
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
         <div class="container">
-          <div class="carousel-caption text-start">
+          <div class="carousel-caption">
+          <!-- <div class="carousel-caption text-start"> -->
             <h1>step1. QR코드를 인식시켜 주세요</h1>
           </div>
         </div>
@@ -43,7 +43,8 @@
       <div class="carousel-item">
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
         <div class="container">
-          <div class="carousel-caption text-end">
+          <div class="carousel-caption">
+          <!-- div class="carousel-caption text-end"> -->
             <h1>36.5 정상입니다</h1>
             </div>
         </div>
@@ -125,38 +126,42 @@
       <h2>체온 측정 테스트</h2>
     </div>
 
+	<!-- <iframe id="iframe" name="iframe" style="display:none"></iframe> -->
+	<iframe id="iframe" name="iframe"></iframe>
+
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">체온 측정 테스트</h4>
-        <form class="needs-validation" novalidate action="/user/insertData" method="post">
+        <form class="needs-validation" action="/user/measureAction" method="post" target="iframe">
+        <!-- <form class="needs-validation" novalidate action="/user/insertData" method="post"> -->
           <div class="row g-3">
             
             <div class="col-12">
               <label for="bizNo" class="form-label">사업자 번호</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" id="bizNo" name="bizNo" value="${user.bizNo }" readonly>
+                <input type="text" class="form-control" id="psuedoBizNo" name="psuedoBizNo" value="${user.bizNo }" readonly>
               </div>
 			<div class="col-12">
               <label for="name" class="form-label">이름</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" id="psuedoName" name="name" value="Dongjin Son">
+                <input type="text" class="form-control" id="psuedoName" name="psuedoName">
               </div>
             </div>
 			<div class="col-12">
               <label for="addr" class="form-label">주소</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" id="psuedoAddr" name="addr" value="Ulsan">
+                <input type="text" class="form-control" id="psuedoAddr" name="psuedoAddr">
               </div>
             </div>
             <div class="col-12">
               <label for="phoneNo" class="form-label">전화번호</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" id="psuedoPhoneNo" name="phoneNo" value="01082351119">
+                <input type="text" class="form-control" id="psuedoPhoneNo" name="psuedoPhoneNo">
               </div>
             </div>
             <div class="col-12">
               <label for="temp" class="form-label">체온</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" id="psuedoTemp" name="temp" value="36.5">
+                <input type="text" class="form-control" id="psuedoTemp" name="psuedoTemp">
               </div>
             </div>
            

@@ -3,9 +3,19 @@
 	display: flex;
 	justify-content: center;
 }
-.cover-container:nth-of-type(1) main:nth-of-type(1) {background: gray; padding: 0 0;}
-.cover-container:nth-of-type(2) main:nth-of-type(1) {background: green; padding: 0 0;}
-.cover-container:nth-of-type(2) main:nth-of-type(2) {background: yellow; padding: 0 0;}
+.cover-container:nth-of-type(1) main:nth-of-type(1) {
+	background: gray; padding: 16px 0;
+	border-radius: 20px;
+}
+.cover-container:nth-of-type(2) main:nth-of-type(1) {
+	background: green; padding: 16px 0;
+	border-radius: 20px;
+}
+/* 
+.cover-container:nth-of-type(2) main:nth-of-type(2) {
+	background: yellow; padding: 0 0;
+}
+ */
 .custom-1 {
 	width:500px;height:300px;
 	border: solid red;

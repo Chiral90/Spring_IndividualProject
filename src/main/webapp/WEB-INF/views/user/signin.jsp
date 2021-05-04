@@ -12,7 +12,7 @@
   <body class="text-center">
     
 <main class="form-signin">
-  <form action="/user/signin" method="post">
+  <form class='needs-validation' action="/user/signin" method="post">
     
     <h1 class="h3 mb-3 fw-normal">현장 측정 유저 로그인</h1>
     <div class="form-floating">
@@ -29,7 +29,7 @@
 
     <div class="checkbox mb-3">
       <label>
-        <input type="checkbox" value="remember-me"> Remember me
+        <input type="checkbox" value="remember-me" id="idSaveCheck"> Remember me
       </label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>

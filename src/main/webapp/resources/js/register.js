@@ -78,4 +78,32 @@ $(document).ready(function(){
 			.html("다시 확인하세요").show();
 		}
 	});
+	
+	//양식 제출 시 하이픈 빼고 숫자만 등록
+	//console.log($("form[class='needs-validation']"));
+	$("form[class='needs-validation']").submit(function(){
+		var inputBizNo = $("#bizNo").val();
+		var regBizNoWithH = /^\d{3}-\d{2}-\d{5}$/;
+		var regBizNoOnlyN = /^\d{10}$/;
+		console.log(/^\d{3}-\d{2}-\d{5}$/.test(inputBizNo) ||
+				/^\d{3}-?\d{2}-\d{5}$/.test(inputBizNo) ||
+				/^\d{3}-\d{2}-?\d{5}$/.test(inputBizNo));
+		console.log(regBizNoOnlyN.test(inputBizNo));
+		if (/^\d{3}-\d{2}-\d{5}$/.test(inputBizNo) ||
+				/^\d{3}-?\d{2}-\d{5}$/.test(inputBizNo) ||
+				/^\d{3}-\d{2}-?\d{5}$/.test(inputBizNo)) {
+			var bizNo = inputBizNo.replaceAll("-", "");
+			$("#bizNo").val(bizNo);
+			//console.log($("#bizNo").val());
+			
+		}
+		if (regBizNoOnlyN.test(inputBizNo)) {
+			var bizNo = inputBizNo;
+			$("#bizNo").val(bizNo);
+			//console.log($("#bizNo").val());
+			
+		}
+		
+	});
+	
 });

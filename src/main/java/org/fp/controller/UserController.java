@@ -136,5 +136,10 @@ public class UserController {
 		
 		
 	}
+	
+	@PostMapping("/measureAction")
+	public void measureAction() {
+		log.info("Measure Action");
+	}
 
 }
