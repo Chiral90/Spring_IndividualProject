@@ -19,7 +19,7 @@
     </a>
 
     <ul class="nav nav-pills">
-      <li class="nav-item"><a href="/user/monitoring" class="nav-link">모니터링</a></li>
+      <!-- <li class="nav-item"><a href="/user/monitoring" class="nav-link">모니터링</a></li> -->
       <li class="nav-item"><a href="/user/measure" class="nav-link">측정</a></li>
       <li class="nav-item"><a href="/user/board" class="nav-link">방문 기록</a></li>
       <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>

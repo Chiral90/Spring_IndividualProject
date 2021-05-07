@@ -49,7 +49,7 @@ alter table united_board add constraint fk_united_board foreign key (bizNo) refe
 alter table united_board drop foreign key fk_united_board;
 select * from user where bizNo = 'admin' and pw = '1111';
 desc united_board;
-select now();
+select DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s');
 select * from united_board;
 select * from united_board where bizNo = 6429200357 and regdate = curdate();
 
@@ -57,3 +57,16 @@ select b.*, u.* from united_board b, user u where b.bizNo = u.bizNo;
 
 set sql_safe_updates = 0;
 delete from user where bizNo='6429200358';
+delete from united_board where bizNo='0';
+drop table u6429200358;
+alter table user change phoneNo corpPhoneNo varchar(12);
+alter table united_board modify temp varchar(5) not null;
+select * from united_board;
+select u.corpName, u.corpPhoneNo, b.name, b.addr, b.phoneNo, b.regdate
+from user u, united_board b 
+where u.bizNo = b.bizNo and (b.temp < 35.5 or b.temp > 37.5) and b.regdate = curdate();
+alter table united_board modify regdate datetime;
+alter table united_board modify updateDate datetime;
+select * from user;
+insert into united_board values
+('0000000000', 29, 'anonymous', 'Ulsan', '01034567890', 36.5, DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s'), null);

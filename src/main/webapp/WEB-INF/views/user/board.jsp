@@ -47,7 +47,7 @@
 	           		<td><c:out value="${board.phoneNo }" /></td>
 	           		<td><c:out value="${board.temp }" /></td>
 	           		<td><c:out value="${board.regdate }" /></td>
-	           		<td><c:out value="${board.updateDate }" /></td>
+	           		<%-- <td><fmt:formatDate pattern="yyyy-MM-dd [E] a hh:mm:ss" value="${board.regdate }" /></td> --%>
 	           		<td></td>
 	           		<!-- date formatting 필요 @mysql -->                     		
 	           		<%-- 

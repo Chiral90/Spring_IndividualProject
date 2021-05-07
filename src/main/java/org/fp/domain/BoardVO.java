@@ -12,8 +12,8 @@ public class BoardVO {
 	private String addr;
 	private String phoneNo;
 	private String temp;
-	private Date regdate;
-	private Date updateDate;
+	private String regdate;
+	private String updateDate;
 	//private String regdate;
 	//private String updateDate;
 

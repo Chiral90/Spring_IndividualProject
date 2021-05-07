@@ -41,4 +41,9 @@ public class UserServiceImpl implements UserService {
 		log.info("board list...." + user.getCorpName());
 		return mapper.boardList(user);
 	}
+	
+	public List<BoardVO> monitorList() {
+		log.info("monitor list....");
+		return mapper.monitorList();
+	}
 }

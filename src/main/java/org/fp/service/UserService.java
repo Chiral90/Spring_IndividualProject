@@ -10,4 +10,5 @@ public interface UserService {
 	public void insertData(BoardVO board); // 방문객 데이터 입력
 	public UserVO login(UserVO user);
 	public List<BoardVO> boardList(UserVO user);
+	public List<BoardVO> monitorList();
 }

@@ -68,7 +68,7 @@
               <label for="phoneNo" class="form-label">사업자 연락처</label>
               <div class="input-group has-validation">
                 
-                <input type="text" class="form-control" id="phoneNo" name="phoneNo" placeholder="'-'를 제외하고 입력" value="01012345678" required>
+                <input type="text" class="form-control" id="corpPhoneNo" name="corpPhoneNo" placeholder="'-'를 제외하고 입력" value="01012345678" required>
                 <div></div>
                 </div>
               </div>

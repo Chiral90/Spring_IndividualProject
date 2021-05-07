@@ -46,16 +46,25 @@ $(document).ready(function(){
 			var bizNo = inputBizNo.replaceAll("-", "");
 			$("#floatingInput").val(bizNo);
 			//console.log($("#bizNo").val());
+			//session 생성
+			sessionStorage.setItem("status", "signin");
 			
 		}
 		if (regBizNoOnlyN.test(inputBizNo)) {
 			var bizNo = inputBizNo;
 			$("#floatingInput").val(bizNo);
 			//console.log($("#bizNo").val());
-			
+			//session 생성
+			sessionStorage.setItem("status", "signin");
+		}
+		if (inputBizNo == "admin") {
+			sessionStorage.setItem("status", "signin");
 		}
 		
 	});
+	
+	
+	
 	
 	
 	//remember me 클릭 시 쿠키에 사업자 번호 저장

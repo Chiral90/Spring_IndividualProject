@@ -49,7 +49,10 @@ public class UserController {
 			log.info("vo : " + vo + " @Controller");
 			//user의 데이터를 세션 영역의 user 변수에 저장
 			session.setAttribute("user", vo);
-			if (vo.getBizNo().equals("admin")) vo.setAdmin(true);
+			if (vo.getBizNo().equals("admin")) {
+				vo.setAdmin(true);
+				return "redirect:/user/monitoring";
+			}
 			
 			if(session.getAttribute("user") != null) {
 				log.info("로그인 성공");
@@ -127,10 +130,11 @@ public class UserController {
 
 	//모니터링 페이지로 화면 이동
 	@GetMapping("/monitoring")
-	public String monitoring(HttpSession session) {
+	public String monitoring(Model model, HttpSession session) {
 		
 		UserVO vo = (UserVO) session.getAttribute("user");
 		if (vo.isAdmin()) {
+			model.addAttribute("list", service.monitorList());
 			return "/user/monitoring";
 		} else {return "redirect:/user/signin";}
 		

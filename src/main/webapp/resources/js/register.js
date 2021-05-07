@@ -63,8 +63,8 @@ $(document).ready(function(){
 		}
 	});
 	
-	$("#phoneNo").keyup(function(){
-		var inputPhoneNo = $(this).val();
+	$("#corpPhoneNo").keyup(function(){
+		var inputcorpPhoneNo = $(this).val();
 		var regBizNo = /^\d{3}-?\d{4}-?\d{4}$/;
 		if (regBizNo.test(inputBizNo)) {
 			$(this).next()

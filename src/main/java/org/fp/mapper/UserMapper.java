@@ -12,5 +12,6 @@ public interface UserMapper {
 	public void insertData(BoardVO board);
 	public UserVO login(UserVO user);
 	public List<BoardVO> boardList(UserVO user);
+	public List<BoardVO> monitorList();
 
 }

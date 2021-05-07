@@ -13,8 +13,11 @@
     <title>Dashboard Template · Bootstrap v5.0</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
-    
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4lz2pt0zi5"></script>
+    
+    <script type="text/javascript" src="/resources/js/monitoring.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 
     
 
@@ -28,18 +31,18 @@
   <body>
     
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Company name</a>
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Foot Print (Monitoring)</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+  <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-      <a class="nav-link" href="/user/signout">Sign out</a>
+      <a class="nav-link" id="sign" href="#"></a><form id="form"><input type="hidden"></form>
     </li>
   </ul>
 </header>
-
+<!-- 
 <div class="container-fluid">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
@@ -117,10 +120,10 @@
         </ul>
       </div>
     </nav>
-
+ -->
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1>
+        <h1 class="h2">실시간 발생 현황</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
           <div class="btn-group me-2">
             <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -159,6 +162,7 @@
             <tr>
               <th>상호명</th>
               <th>업체 연락처</th>
+              <th>체온 측정 결과</th>
               <th>방문객 이름</th>
               <th>방문객 주소</th>
               <th>방문객 연락처</th>
@@ -166,9 +170,18 @@
             </tr>
           </thead>
           <tbody>
-            
-            
-            
+          <c:forEach items="${list}" var="board">
+	           	<tr>
+	           		<td><c:out value="${board.corpName }" /></td>
+	           		<td><c:out value="${board.corpPhoneNo }" /></td>
+	           		<%-- <td><fmt:parseNumber type="number" pattern="00.00" value="${board.temp }" var="temp"/><c:out value="${temp }" /></td> --%>
+	           		<td><c:out value="${board.temp }" /></td>
+	           		<td><c:out value="${board.name }" /></td>
+	           		<td><c:out value="${board.addr }" /></td>
+	           		<td><c:out value="${board.phoneNo }" /></td>
+	           		<td><c:out value="${board.regdate }" /></td>
+	           	</tr>
+          </c:forEach>
           </tbody>
         </table>
       </div>

@@ -3,28 +3,7 @@
  */
 
 $(document).ready(function(){
-	var name = $("#name")
-	var addr = $("#addr")
-	var no = $("#phoneNo")
-	var temp = $("#temp")
-	
-	var inputName = $("#psuedoName").val();
-	var inputAddr = $("#psuedoAddr").val();
-	var inputNo = $("#psuedoPhoneNo").val();
-	var inputTemp = $("#psuedoTemp").val();
-	//var signal = $("rect")[4];
-	//console.log(signal);
-	
-	$("#name").keyup(function(){
 		
-		//signal.children("svg").css("background", "red");
-		
-	});
-	
-	$(".w-100").click(function(){
-		
-	});
-	
 	/*
 	$(".w-100").click(function(e){
 		e.preventDefault();
