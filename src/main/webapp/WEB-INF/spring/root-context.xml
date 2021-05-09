@@ -24,7 +24,7 @@
 		 	value="jdbc:log4jdbc:mysql://localhost:3307/ip?serverTimezone=Asia/Seoul"></property>
 		 
 		<property name="username" value="root"></property>
-		<property name="password" value="1119"></property>
+		<property name="password" value="72004014"></property>
 	</bean>
 
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
