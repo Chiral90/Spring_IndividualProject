@@ -14,6 +14,7 @@
     <title>Cover Template · Bootstrap v5.0</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
     
 
@@ -101,6 +102,6 @@
 
 </div>
  -->
-    
+ 
   </body>
 </html>

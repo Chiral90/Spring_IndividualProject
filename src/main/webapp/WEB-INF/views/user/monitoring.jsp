@@ -17,8 +17,30 @@
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4lz2pt0zi5"></script>
     
     <script type="text/javascript" src="/resources/js/monitoring.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-
+    <!-- 화면이동 없이 주기적으로 업데이트 ; db업데이트 시 화면 업데이트하는 방법으로 바꾸면 더 좋을 듯 ; 문제 : 검출 로그를 업데이트 하지는 못함 -->
+    <!-- <script type="text/javascript">
+	  $(document).ready(function(){
+		  setInterval(function() { //실행할 스크립트 }, 1000);
+			  ajaxTest();
+		  }, 3000);
+	  });
+	
+	    function ajaxTest(){
+	      $.ajax({
+	        type : "GET",
+	        url : "/user/monitoring",
+	        dataType : "text",
+	        error : function() {
+	          alert('통신실패!!');
+	        },
+	        success : function() {
+	          console.log("업데이트 성공");
+	        }
+	 
+	      });
+	    }
+  </script>
+	 -->
     
 
     <!-- Bootstrap core CSS -->

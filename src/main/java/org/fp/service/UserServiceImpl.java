@@ -27,6 +27,17 @@ public class UserServiceImpl implements UserService {
 		mapper.registerUser(user);
 	}
 	
+	public void register(UserVO user) {
+		log.info("register new user...." + user);
+		mapper.registerUser(user);
+	}
+	
+	public int bizNoChk(String bizNo) { // return boolean이면 없을 때 에러 발생-입력한 사업자 번호가 db에 존재하면 return false
+		log.info("bizNo Check...." + bizNo);
+		int result = mapper.bizNoChk(bizNo);
+		return result;
+	}
+	
 	public void insertData(BoardVO board) {
 		log.info("insert customer data...." + board);
 		mapper.insertData(board);

@@ -24,10 +24,11 @@ create table user (
 	bizNo varchar(10) primary key, -- not null,
     corpName varchar(20), -- not null,
     pw varchar(20),
+    addr varchar(100),
     lati varchar(20),
     longi varchar(20),
-    phoneNo varchar(12),
-    sectors varchar(10)
+    corpPhoneNo varchar(12),
+    sectors varchar(12)
 );
 drop table user;
 desc user;
@@ -64,9 +65,18 @@ alter table united_board modify temp varchar(5) not null;
 select * from united_board;
 select u.corpName, u.corpPhoneNo, b.name, b.addr, b.phoneNo, b.regdate
 from user u, united_board b 
-where u.bizNo = b.bizNo and (b.temp < 35.5 or b.temp > 37.5) and b.regdate = curdate();
+where u.bizNo = b.bizNo and (b.temp < 35.5 or b.temp > 37.5) and b.regdate >= curdate();
 alter table united_board modify regdate datetime;
 alter table united_board modify updateDate datetime;
 select * from user;
-insert into united_board values
-('0000000000', 29, 'anonymous', 'Ulsan', '01034567890', 36.5, DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s'), null);
+insert into united_board
+(bizNo, name, addr, phoneNo, temp, regdate)
+values
+('0000000000', 'anonymous', 'Ulsan', '01034567890', 39, DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s'));
+select * from united_board where bizNo='0000000000' and
+regdate >= curdate();
+-- use mysql;
+-- select * from general_log;
+show variables where variable_name like '%log%';
+drop table u0000000000;
+select * from user;

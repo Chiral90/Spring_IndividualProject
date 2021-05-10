@@ -44,6 +44,18 @@ public class UserControllerTests {
 		//session.clearAttributes();
 	}
 	
+	@Test
+	public void testBizNoChk() throws Exception {
+		String exist = "admin";
+		String notExist = "test";
+		log.info("check bizNo....");
+		log.info(
+				mockMvc.perform(MockMvcRequestBuilders.post("/user/existChk")
+						.param("bizNo", notExist))
+				.andReturn().getModelAndView().getModelMap()
+				);
+	}
+	
 	//@Test
 	public void testList() throws Exception {
 		//session test
@@ -62,7 +74,7 @@ public class UserControllerTests {
 		session.clearAttributes();
 	}
 	
-	@Test
+	//@Test
 	public void testSignin() throws Exception {
 		
 		UserVO user = new UserVO();

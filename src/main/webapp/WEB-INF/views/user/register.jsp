@@ -2,6 +2,7 @@
 <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/resources/css/form-validation.css" rel="stylesheet">
+<link href="/resources/css/register.css" rel="stylesheet">
 <script type="text/javascript" src="/resources/js/register.js"></script>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,7 +13,7 @@
     <div class="py-5 text-center">
       <!-- <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
       <h2>사업자 정보 등록</h2>
-      <p class="lead">전체 항목을 빠짐없이 기입해주세요</p>
+      <p class="lead"></p>
     </div>
 
       <div class="col-md-7 col-lg-8">
@@ -22,34 +23,57 @@
             
 			<div class="col-12">
               <label for="corpName" class="form-label">상호명</label>
-              <div class="input-group has-validation">
-                <input type="text" class="form-control" id="corpName" name="corpName" placeholder="" value="그린 컴퓨터 아카데미" required>
-                <div class="invalid-feedback">
+                <input type="text" class="form-control" id="corpName" name="corpName" placeholder="" value="" required>
+                
+                <div class="chk invalid-feedback">
                  	상호명은 필수 입력입니다.
                 </div>
-              </div>
             </div>
 			
             <div class="col-12">
-              <label for="bizNo" class="form-label">사업자 번호 (ID)</label>
-              <div class="input-group has-validation">
+              <label for="bizNo" class="form-label">사업자 번호 (ID)</label>            
+                <input type="text" class="form-control" id="bizNo" name="bizNo" placeholder="" value="" required>
                 
-                <input type="text" class="form-control" id="bizNo" name="bizNo" placeholder="" value="6429200357" required>
-                <div></div>
-              </div>
+                <div class="chk invalid-feedback">
+                 	사업자 번호는 필수 입력입니다.
+                </div>
+                <div></div><div></div>
             </div>
 
             <div class="col-12">
               <label for="pw" class="form-label">패스워드</label>
-              <input type="password" class="form-control" id="pw" name="pw" value="1234" required>
+              <input type="password" class="form-control" id="pw" name="pw" value="" required>
+              <div class="chk invalid-feedback">
+                 	패스워드는 필수 입력입니다.
+                </div>
               <div></div>
             
             </div>
             
+            <div class="col-sm-12">
+              <label for="addr" class="form-label">주소</label>
+              <input type="text" class="form-control" id="addr" name="addr" placeholder="" value="" required>
+                <div class="chk invalid-feedback">
+                	주소는 필수 입력입니다.
+              </div>
+            </div>
+            <div class="col-sm-10">
+              <label for="url" class="form-label">url</label>
+              <input type="text" class="form-control" id="url" name="url" placeholder="" value="">
+                <div class="chk invalid-feedback">
+                	주소는 필수 입력입니다.
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <label for="link" class="form-label">구글 지도</label>
+              <input type="button" class="w-100 btn btn-primary" id="linkBtn" value="링크"><a href="#" id="link"></a>
+              
+            </div>
+            
             <div class="col-sm-6">
               <label for="lati" class="form-label">위도</label>
-              <input type="text" class="form-control" id="lati" name="lati" placeholder="" value="35.54314144195848" required>
-                <div class="invalid-feedback">
+              <input type="text" class="form-control" id="lati" name="lati" placeholder="" value="" readonly required>
+                <div class="chk invalid-feedback">
                 	위도는 필수 입력입니다.
               </div>
               
@@ -57,21 +81,23 @@
 
             <div class="col-sm-6">
               <label for="longi" class="form-label">경도</label>
-              <input type="text" class="form-control" id="longi" name="longi" placeholder="" value="129.3387265285293" required>
-                <div class="invalid-feedback">
+              <input type="text" class="form-control" id="longi" name="longi" placeholder="" value="" readonly required>
+                <div class="chk invalid-feedback">
                	 경도는 필수 입력입니다.
               </div>
               
             </div>
             
+         
+            
             <div class="col-12">
               <label for="phoneNo" class="form-label">사업자 연락처</label>
-              <div class="input-group has-validation">
                 
-                <input type="text" class="form-control" id="corpPhoneNo" name="corpPhoneNo" placeholder="'-'를 제외하고 입력" value="01012345678" required>
-                <div></div>
+                <input type="text" class="form-control" id="corpPhoneNo" name="corpPhoneNo" placeholder="'-'를 제외하고 입력" value="" required>
+                <div class="chk invalid-feedback">
+                 	연락처는 필수 입력입니다.
                 </div>
-              </div>
+                <div></div>
             </div>
 
             <div class="col-12">
@@ -82,7 +108,7 @@
                 <option value="medical">의료</option>
                 <option value="education">교육</option>
               </select>
-              <div class="invalid-feedback">
+              <div class="chk invalid-feedback">
 				업종을 선택하세요.
               </div>
             </div>

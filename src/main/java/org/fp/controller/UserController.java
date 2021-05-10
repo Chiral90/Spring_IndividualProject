@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -96,7 +97,7 @@ public class UserController {
 	//회원 가입 페이지로 화면 이동
 	@GetMapping("/register")
 	public void resgister(HttpSession session) {
-		session.removeAttribute("user");
+		session.invalidate();
 	}
 		
 	//회원 가입 제출, db insert
@@ -106,12 +107,24 @@ public class UserController {
 		String sql = "create table u" + user.getBizNo() + " (bno bigint primary key auto_increment, "; // 테이블 생성용 sql. 댓글형식으로 할거면 필요 없음
 		sql += "name varchar(20), addr varchar(100), phoneNo varchar(12), regdate date, updateDate date)";
 		
-		service.registerUser(user, sql);
+		//service.registerUser(user, sql);
+		service.register(user);
 		
 		log.info("insert : " + user + "@Controller");
 		//rttr.addFlashAttribute("result", board.getNo());
 		
 		return "redirect:/user/measure";
+	}
+	
+	//중복 검사
+	@ResponseBody
+	@PostMapping("/existChk")
+	public String existChk(String bizNo) {
+		//log.info("check existing bizNo for : " + bizNo);
+		int result = service.bizNoChk(bizNo);
+		if (result == 0) {
+			return "success";
+		} else return "fail";
 	}
 	
 	// 방문 기록 조회 페이지로 화면 이동
@@ -145,5 +158,4 @@ public class UserController {
 	public void measureAction() {
 		log.info("Measure Action");
 	}
-
 }
