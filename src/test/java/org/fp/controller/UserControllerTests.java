@@ -44,7 +44,7 @@ public class UserControllerTests {
 		//session.clearAttributes();
 	}
 	
-	@Test
+	//@Test
 	public void testBizNoChk() throws Exception {
 		String exist = "admin";
 		String notExist = "test";
@@ -62,7 +62,7 @@ public class UserControllerTests {
 		session = new MockHttpSession();
 		UserVO vo = new UserVO();
 		vo.setBizNo("6429200357");
-		vo.setPw("1234");
+		vo.setPw("rmfls00357");
 		session.setAttribute("user", vo);
 		
 		log.info(
@@ -74,7 +74,7 @@ public class UserControllerTests {
 		session.clearAttributes();
 	}
 	
-	//@Test
+	@Test
 	public void testSignin() throws Exception {
 		
 		UserVO user = new UserVO();
