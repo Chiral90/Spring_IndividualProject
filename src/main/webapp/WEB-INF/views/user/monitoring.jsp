@@ -15,6 +15,14 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4lz2pt0zi5"></script>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+	<script>
+		var socket = io('http://localhost:3000/');
+		socket.on("status", (arg1, arg2, arg3) => {
+			console.log("status : " + arg1);
+			console.log("location : " + arg2 + ", " + arg3);
+		})
+	</script>
     
     <script type="text/javascript" src="/resources/js/monitoring.js"></script>
     <!-- 화면이동 없이 주기적으로 업데이트 ; db업데이트 시 화면 업데이트하는 방법으로 바꾸면 더 좋을 듯 ; 문제 : 검출 로그를 업데이트 하지는 못함 -->

@@ -38,9 +38,10 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 	
-	public void insertData(BoardVO board) {
+	public int insertData(BoardVO board) {
 		log.info("insert customer data...." + board);
-		mapper.insertData(board);
+		int result = mapper.insertData(board);
+		return result;
 	}
 	
 	public UserVO login(UserVO user) {

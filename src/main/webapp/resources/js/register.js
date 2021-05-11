@@ -82,7 +82,8 @@ $(document).ready(function(){
 		//중복검사
 		var regBizNoWithH = /^\d{3}-\d{2}-\d{5}$/;
 		var regBizNoOnlyN = /^\d{10}$/;
-		if (/^\d{3}-\d{2}-\d{5}$/.test(inputBizNo) ||
+		if (
+				/^\d{3}-\d{2}-\d{5}$/.test(inputBizNo) ||
 				/^\d{3}-?\d{2}-\d{5}$/.test(inputBizNo) ||
 				/^\d{3}-\d{2}-?\d{5}$/.test(inputBizNo)) {
 			var bizNo = inputBizNo.replaceAll("-", "");

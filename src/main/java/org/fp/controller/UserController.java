@@ -1,5 +1,7 @@
 package org.fp.controller;
 
+import java.util.Objects;
+
 import javax.servlet.http.HttpSession;
 
 import org.fp.domain.BoardVO;
@@ -27,7 +29,7 @@ public class UserController {
 	
 	//로그인 페이지로 화면 이동
 	@GetMapping("/login")
-	public String signIn(HttpSession session) {
+	public String signIn(HttpSession session) { //세션에 정보 있을 때
 		if (session.getAttribute("user") != null) {
 			log.info("이미 접속 중입니다.");
 			return "redirect:/user/measure";
@@ -38,7 +40,7 @@ public class UserController {
 	}
 	
 	@GetMapping("/signin")
-	public void signIn() {
+	public void signIn() { //세션에 정보 없을 때
 		log.info("새로운 사용자");
 	}
 	
@@ -49,20 +51,25 @@ public class UserController {
 			UserVO vo = service.login(user);
 			log.info("vo : " + vo + " @Controller");
 			//user의 데이터를 세션 영역의 user 변수에 저장
-			session.setAttribute("user", vo);
-			if (vo.getBizNo().equals("admin")) {
-				vo.setAdmin(true);
-				return "redirect:/user/monitoring";
-			}
-			
-			if(session.getAttribute("user") != null) {
-				log.info("로그인 성공");
-				return "redirect:/user/measure";
+			log.info("null 여부 : " + Objects.nonNull(vo));
+			if (Objects.nonNull(vo)) { //db에 해당 정보의 유저가 있으면
+				log.info("세션 변수에 저장");
+				session.setAttribute("user", vo); // 세션 변수 user에 vo를 저장하고
+				if (vo.getBizNo().equals("admin")) { // 관리자 계정이면
+					vo.setAdmin(true);
+					log.info("로그인 성공");
+					return "redirect:/user/monitoring"; // 모니터링 페이지로 이동
+				}
+				log.info("일반 유저 로그인"); // 관리자 계정이 아니면
+				log.info("세션 변수 정보 : " + session.getAttribute("user"));
+				return "redirect:/user/measure"; // 측정 페이지로 이동
 			} else {
+				log.info("로그인 실패");
 				return "/user/signin";
 			}		
 	}
 	
+	//로그아웃
 	@PostMapping("/signout")
 	public String logout(HttpSession session) {
 		log.info("user signout....");
@@ -74,44 +81,43 @@ public class UserController {
 	//체온 측정 페이지로 화면 이동
 	@GetMapping("/measure")
 	public String measure(HttpSession session) {
-		if (session.getAttribute("user") != null) {
+		if (session.getAttribute("user") != null) { //세션에 로그인 정보 있을 때
 			return "/user/measure";
-		} else {
+		} else {  //세션에 로그인 정보 없을 때
 			return "redirect:/user/signin";
 		}
 		
 	}
 	
 	//체온 측정값 제출, db insert
+	@ResponseBody
 	@PostMapping("/insertData")
 	public String insertData(BoardVO board) {
 				
-		service.insertData(board);
-		
-		log.info("insert : " + board + "@Controller");
-		//rttr.addFlashAttribute("result", board.getNo());
-		
-		return "redirect:/user/measure";
+		int result = service.insertData(board); // measureAction의 ajax로 조건에 따른 return을 위해 insert 결과로 int를 return
+		if (result == 1) {
+			log.info("insert : " + board + "@Controller");
+			return "success";
+		} else {return "fail";}
 	}
 	
 	//회원 가입 페이지로 화면 이동
 	@GetMapping("/register")
 	public void resgister(HttpSession session) {
-		session.invalidate();
+		session.invalidate(); //회원가입 페이지로 이동하면 세션 클리어
 	}
 		
 	//회원 가입 제출, db insert
 	@PostMapping("/register")
 	//public String insertUser(UserVO user, RedirectAttributes rttr) {
 	public String insertUser(UserVO user) {
-		String sql = "create table u" + user.getBizNo() + " (bno bigint primary key auto_increment, "; // 테이블 생성용 sql. 댓글형식으로 할거면 필요 없음
-		sql += "name varchar(20), addr varchar(100), phoneNo varchar(12), regdate date, updateDate date)";
+		//String sql = "create table u" + user.getBizNo() + " (bno bigint primary key auto_increment, "; // 테이블 생성용 sql. 댓글형식으로 할거면 필요 없음
+		//sql += "name varchar(20), addr varchar(100), phoneNo varchar(12), regdate date, updateDate date)";
 		
 		//service.registerUser(user, sql);
 		service.register(user);
 		
 		log.info("insert : " + user + "@Controller");
-		//rttr.addFlashAttribute("result", board.getNo());
 		
 		return "redirect:/user/measure";
 	}

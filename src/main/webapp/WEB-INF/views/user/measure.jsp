@@ -8,6 +8,13 @@
 <link href="/resources/css/carousel.css" rel="stylesheet">
 <!-- Custom js -->
 <script type="text/javascript" src="/resources/js/measure.js"></script>
+<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script>
+var socket = io('http://localhost:3000/');
+//socket.on("hello", (arg) => {
+//	console.log(arg);
+//});
+</script>
 
   <body>
 
@@ -138,6 +145,9 @@
               <label for="bizNo" class="form-label">사업자 번호</label>
               <div class="input-group has-validation">
                 <input type="text" class="form-control" id="bizNo" name="bizNo" value="${user.bizNo }" readonly>
+                <input type="hidden" id="lati" name="lati" value="${user.lati }">
+                <input type="hidden" id="longi" name="longi" value="${user.longi }">
+                <input type="hidden" id="cnt" name="cnt" value="1">
               </div>
 			<div class="col-12">
               <label for="name" class="form-label">이름</label>
