@@ -1,6 +1,7 @@
 package org.fp.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.fp.domain.BoardVO;
 import org.fp.domain.UserVO;
@@ -19,7 +20,7 @@ public class UserServiceImpl implements UserService {
 	@Setter(onMethod_ = @Autowired)
 	private UserMapper mapper;
 	
-	@Transactional // 유저 등록과 동시에 사업자 번호의 테이블이 생성
+	@Transactional // 유저 등록과 동시에 사업자 번호의 테이블이 생성 - 현재 미사용
 	public void registerUser(UserVO user, String sql) {
 		log.info("create user table....");
 		mapper.createUserTable(sql);
@@ -52,6 +53,11 @@ public class UserServiceImpl implements UserService {
 	public List<BoardVO> boardList(UserVO user) {
 		log.info("board list...." + user.getCorpName());
 		return mapper.boardList(user);
+	}
+	
+	public List<BoardVO> specificDate(BoardVO vo) {
+		log.info("specific date list..." + vo.getBizNo() + " at " + vo.getRegdate());
+		return mapper.specificDate(vo);
 	}
 	
 	public List<BoardVO> monitorList() {

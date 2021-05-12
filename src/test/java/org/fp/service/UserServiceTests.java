@@ -1,8 +1,6 @@
 package org.fp.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import org.fp.domain.BoardVO;
 import org.fp.domain.UserVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +20,15 @@ public class UserServiceTests {
 	private UserService service;
 	
 	@Test
+	public void testSpecificDate() {
+		log.info("특정일 데이터");
+		BoardVO vo = new BoardVO();
+		vo.setBizNo("6429200357");
+		vo.setRegdate("%2021-05-11%");
+		log.info("specific date list...." + service.specificDate(vo));
+	}
+	
+	//@Test
 	public void testBizNoChk() {
 		log.info("id chk....");
 		String bizNo = "6429200357";

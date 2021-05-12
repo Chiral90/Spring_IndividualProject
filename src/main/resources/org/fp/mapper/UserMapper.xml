@@ -39,12 +39,17 @@
 		]]>
 	</select>
 	
+	<!-- 특정일 방문 기록 - 자바스크립트에서 String regdate 받아올 때 앞/뒤 % 붙일 것-->
+	<select id="specificDate" resultType="org.fp.domain.BoardVO" parameterType="org.fp.domain.BoardVO">
+			select * from united_board where bizNo = #{bizNo} and regdate like #{regdate}
+	</select>
+	
 	<!-- 이상 체온 리스트 -->
 	<select id="monitorList" resultType="org.fp.domain.DashBoardVO">
 		<![CDATA[
 			select u.corpName, u.corpPhoneNo, b.temp, b.name, b.addr, b.phoneNo, b.regdate, u.lati, u.longi
 			from user u, united_board b 
-			where u.bizNo = b.bizNo and (b.temp < 35.5 or b.temp > 37.5) and b.regdate >= curdate()
+			where u.bizNo = b.bizNo and (b.temp < 35.5 or b.temp > 37.5) and b.regdate >= curdate() order by b.regdate desc
 		]]>
 	</select>
 	

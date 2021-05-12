@@ -1,5 +1,6 @@
 package org.fp.controller;
 
+import org.fp.domain.BoardVO;
 import org.fp.domain.UserVO;
 import org.junit.After;
 import org.junit.Before;
@@ -45,6 +46,22 @@ public class UserControllerTests {
 	}
 	
 	@Test
+	public void testSpecificDate() throws Exception {
+		String regdate = "%2021-05-11%";
+		session = new MockHttpSession();
+		UserVO user = new UserVO();
+		user.setBizNo("6429200357");
+		session.setAttribute("user", user);
+		log.info(
+				mockMvc.perform(MockMvcRequestBuilders.post("/user/specificDate")
+						.param("regdate", regdate)
+						.session(session))
+				.andReturn().getModelAndView().getModelMap()
+				);
+		session.clearAttributes();
+	}
+	
+	//@Test
 	public void testBizNoChk() throws Exception {
 		String exist = "admin";
 		String notExist = "test";

@@ -13,6 +13,7 @@ public interface UserMapper {
 	public int insertData(BoardVO board);
 	public UserVO login(UserVO user);
 	public List<BoardVO> boardList(UserVO user);
+	public List<BoardVO> specificDate(BoardVO vo);
 	public List<BoardVO> monitorList();
 
 }

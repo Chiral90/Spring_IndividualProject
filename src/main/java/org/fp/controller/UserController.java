@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
+//@RestController
 @Controller
 @Log4j
 @RequestMapping("/user/*")
@@ -30,7 +31,7 @@ public class UserController {
 	//로그인 페이지로 화면 이동
 	@GetMapping("/login")
 	public String signIn(HttpSession session) { //세션에 정보 있을 때
-		if (session.getAttribute("user") != null) {
+		if (Objects.nonNull(session.getAttribute("user"))) {
 			log.info("이미 접속 중입니다.");
 			return "redirect:/user/measure";
 		} else {
@@ -65,6 +66,7 @@ public class UserController {
 				return "redirect:/user/measure"; // 측정 페이지로 이동
 			} else {
 				log.info("로그인 실패");
+				session.invalidate();
 				return "/user/signin";
 			}		
 	}
@@ -81,9 +83,10 @@ public class UserController {
 	//체온 측정 페이지로 화면 이동
 	@GetMapping("/measure")
 	public String measure(HttpSession session) {
-		if (session.getAttribute("user") != null) { //세션에 로그인 정보 있을 때
+		if (Objects.nonNull(session.getAttribute("user"))) { //세션에 로그인 정보 있을 때
 			return "/user/measure";
 		} else {  //세션에 로그인 정보 없을 때
+			session.invalidate();
 			return "redirect:/user/signin";
 		}
 		
@@ -132,18 +135,35 @@ public class UserController {
 			return "success";
 		} else return "fail";
 	}
+
 	
-	// 방문 기록 조회 페이지로 화면 이동
+	//방문 기록 페이지로 화면 이동
 	@GetMapping("/board")
 	public String board(Model model, HttpSession session) {
 		//log.info(session.getAttribute("user"));
-		if (session.getAttribute("user") != null) {
+		if (Objects.nonNull(session.getAttribute("user"))) {
 			UserVO user = (UserVO) session.getAttribute("user");
 			model.addAttribute("list", service.boardList(user));
 			return "/user/board";
 		} else {
+			session.invalidate();
 			return "redirect:/user/signin";
 		}
+	}
+	
+	//방문 기록 페이지에서 특정한 날짜 리스트 불러오기
+	@ResponseBody
+	@PostMapping("/specificDate")
+	public void specificDate(String regdate, Model model, HttpSession session) {
+		if (Objects.nonNull(session.getAttribute("user"))) {
+			UserVO user = (UserVO) session.getAttribute("user");
+			BoardVO vo = new BoardVO();
+			vo.setBizNo(user.getBizNo());
+			vo.setRegdate(regdate);
+			model.addAttribute("list2", service.specificDate(vo));
+			log.info(vo.getBizNo() + " Go to specificDate : " + vo.getRegdate());
+		}
+		
 	}
 	
 
@@ -152,12 +172,13 @@ public class UserController {
 	public String monitoring(Model model, HttpSession session) {
 		
 		UserVO vo = (UserVO) session.getAttribute("user");
-		if (vo.isAdmin()) {
+		if (Objects.nonNull(session.getAttribute("user")) && vo.isAdmin()) {
 			model.addAttribute("list", service.monitorList());
 			return "/user/monitoring";
-		} else {return "redirect:/user/signin";}
-		
-		
+		} else {
+			session.invalidate();
+			return "redirect:/user/signin";
+		}
 	}
 	
 	@PostMapping("/measureAction")
