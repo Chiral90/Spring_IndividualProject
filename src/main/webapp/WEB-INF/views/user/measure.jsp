@@ -1,4 +1,4 @@
-<%@ include file="../includes/header.jsp" %>
+<%@ include file="../includes/userHeader.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
@@ -6,6 +6,7 @@
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">    
 <!-- Custom styles for this template -->
 <link href="/resources/css/carousel.css" rel="stylesheet">
+<link href="/resources/css/measure.css" rel="stylesheet">
 <!-- Custom js -->
 <script type="text/javascript" src="/resources/js/measure.js"></script>
 <script src="http://localhost:3000/socket.io/socket.io.js"></script>
@@ -29,7 +30,8 @@ var socket = io('http://localhost:3000/');
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <rect width="100%" height="100%"><img id="qr" class="img-responsive img-circle center-block" src="/resources/img/qr.jpg"></rect></svg>
         <div class="container">
           <div class="carousel-caption">
           <!-- <div class="carousel-caption text-start"> -->
@@ -39,7 +41,8 @@ var socket = io('http://localhost:3000/');
       </div>
      
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <rect width="100%" height="100%"><img id="measure" class="img-responsive img-circle center-block" src="/resources/img/measure.png"></rect></svg>
         <div class="container">
           <div class="carousel-caption">
             <h1>step2. 센서에 손목을 밀착시켜 주세요</h1>
@@ -48,7 +51,8 @@ var socket = io('http://localhost:3000/');
       </div>
       
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <rect width="100%" height="100%"><img id="ok" class="img-responsive img-circle center-block" src="/resources/img/ok.png"></rect></svg>
         <div class="container">
           <div class="carousel-caption">
           <!-- div class="carousel-caption text-end"> -->
@@ -58,7 +62,8 @@ var socket = io('http://localhost:3000/');
       </div>
       
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <rect width="100%" height="100%"><img id="retry" class="img-responsive img-circle center-block" src="/resources/img/retry.png"></rect></svg>
         <div class="container">
           <div class="carousel-caption">
             <h1>다시 측정하세요</h1>
@@ -67,14 +72,15 @@ var socket = io('http://localhost:3000/');
       </div>
       
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    
+    <!-- <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
-    </button>
+    </button> -->
   </div>
 
   <!-- Marketing messaging and featurettes

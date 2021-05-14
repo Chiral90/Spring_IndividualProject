@@ -9,6 +9,9 @@ $(document).ready(function(){
 	//아두이노 구현 시 -> input value 변화 감지 (on("propertychange change keyup paste input", function() {})해서 parent form submit (target="iframe" action="/user/measureAction")   
 	
 	//id로 받아오는 것 같음
+	//console.log($(top.document).find("svg")[0]);
+	//$(top.document).find("rect")[0].removeAttribute("fill");
+	//$(top.document).find("rect")[0].setAttribute("background-image", "url('/resources/img/qr.jpg')");
 
 	//사람이 결과를 볼 수 있어야 하므로 ajax를 통해 action 후 2초 setTimeout
 
@@ -28,28 +31,36 @@ $(document).ready(function(){
 			window.parent.temp.value != ""
 	) {
 		measure();
-		setTimeout(function(){ // 2초 후에 판정
 		
 			if (parseFloat(window.parent.temp.value) > 35.5 && parseFloat(window.parent.temp.value) < 37.5 && window.parent.cnt.value == 1) { // 정상범위이면
 				console.log("초회차 정상");
-				ok();			
+				setTimeout(function(){
+					ok();
+				}, 2000);
+							
 			
 			} else { // 비정상이면
-				$(top.document).find(".carousel-inner").children()[0].setAttribute("class", "carousel-item");
-				$(top.document).find(".carousel-inner").children()[1].setAttribute("class", "carousel-item");
-				$(top.document).find(".carousel-inner").children()[2].setAttribute("class", "carousel-item");
-				$(top.document).find(".carousel-inner").children()[3].setAttribute("class", "carousel-item active");
-				$(top.document).find(".carousel-indicators").children()[0].removeAttribute("class");
-				$(top.document).find(".carousel-indicators").children()[0].removeAttribute("aria-current");
-				$(top.document).find(".carousel-indicators").children()[1].removeAttribute("class");
-				$(top.document).find(".carousel-indicators").children()[1].removeAttribute("aria-current");
-				$(top.document).find(".carousel-indicators").children()[2].removeAttribute("class");
-				$(top.document).find(".carousel-indicators").children()[2].removeAttribute("aria-current");
-				$(top.document).find(".carousel-indicators").children()[3].setAttribute("class", "active");
-				$(top.document).find(".carousel-indicators").children()[3].setAttribute("aria-current", "true");
-				setTimeout(function(){ // 2초 후 한 번 더 측정
 					if (window.parent.cnt.value == 1){
-						retry();
+						console.log("here? cnt : " + window.parent.cnt.value);
+						setTimeout(function(){
+							$(top.document).find(".carousel-inner").children()[0].setAttribute("class", "carousel-item");
+							$(top.document).find(".carousel-inner").children()[1].setAttribute("class", "carousel-item");
+							$(top.document).find(".carousel-inner").children()[2].setAttribute("class", "carousel-item");
+							$(top.document).find(".carousel-inner").children()[3].setAttribute("class", "carousel-item active");
+							$(top.document).find(".carousel-indicators").children()[0].removeAttribute("class");
+							$(top.document).find(".carousel-indicators").children()[0].removeAttribute("aria-current");
+							$(top.document).find(".carousel-indicators").children()[1].removeAttribute("class");
+							$(top.document).find(".carousel-indicators").children()[1].removeAttribute("aria-current");
+							$(top.document).find(".carousel-indicators").children()[2].removeAttribute("class");
+							$(top.document).find(".carousel-indicators").children()[2].removeAttribute("aria-current");
+							$(top.document).find(".carousel-indicators").children()[3].setAttribute("class", "active");
+							$(top.document).find(".carousel-indicators").children()[3].setAttribute("aria-current", "true");
+						}, 2000);
+						
+						setTimeout(function(){
+							retry();
+						}, 4000);
+						
 				}
 				
 				if (window.parent.name.value != "" &&
@@ -57,20 +68,23 @@ $(document).ready(function(){
 						window.parent.phoneNo.value != "" &&
 						window.parent.temp.value != "") {
 					measure();
-					setTimeout(function(){
 						if ( parseFloat(window.parent.temp.value) > 35.5 && parseFloat(window.parent.temp.value) < 37.5 && window.parent.cnt.value == 2 ) { // 재측정 후 정상이면
 							console.log("재측정 후 정상");
-							ok();
-							
-						} else { // 재측정 후 비정상이면
+							setTimeout(function(){
+								ok();
+							}, 2000);							
+						} else if ((parseFloat(window.parent.temp.value) < 35.5 || parseFloat(window.parent.temp.value) > 37.5) && window.parent.cnt.value == 2) { // 재측정 후 비정상이면
 							console.log("재측정 후 비정상");
-							nk();
+							console.log(window.parent.cnt.value);
+							//console.log($(top.document).find("#retry"));
+							$(top.document).find("#retry").removeAttr("src");
+							$(top.document).find("#retry").attr("src", "/resources/img/fail.png");
+							setTimeout(function(){
+								nk();
+							}, 2000);							
 						}
-					}, 2000);
 				}
-			}, 2000);
 		} // close else
-		}, 2000);
 	}
 });
 
@@ -109,7 +123,8 @@ function ok() { // 사람이 결과를 볼 수 있어야 하므로 ajax를 통�
 			name : $("#name", parent.document).val(),
 			addr : $("#addr", parent.document).val(),
 			phoneNo : $("#phoneNo", parent.document).val(),
-			temp : $("#temp", parent.document).val()
+			temp : $("#temp", parent.document).val(),
+			status : "정상"
 	}
 	$.ajax({
 		type: "post",
@@ -151,7 +166,8 @@ function nk() {
 			name : $("#name", parent.document).val(),
 			addr : $("#addr", parent.document).val(),
 			phoneNo : $("#phoneNo", parent.document).val(),
-			temp : $("#temp", parent.document).val()
+			temp : $("#temp", parent.document).val(),
+			status : "발생"
 	}
 	$.ajax({
 		type: "post",
@@ -164,10 +180,6 @@ function nk() {
 			console.log(e);
 		}
 	});
-	$(top.document).find(".carousel-inner").children()[0].setAttribute("class", "carousel-item");
-	$(top.document).find(".carousel-inner").children()[1].setAttribute("class", "carousel-item");
-	$(top.document).find(".carousel-inner").children()[2].setAttribute("class", "carousel-item");
-	$(top.document).find(".carousel-inner").children()[3].setAttribute("class", "carousel-item active");
 	$(top.document).find("div.carousel-caption h1")[3].innerHTML = "입장 불가. 가까운 진료소에서 검사 해주세요";
 	$(top.document).find(".carousel-indicators").children()[0].removeAttribute("class");
 	$(top.document).find(".carousel-indicators").children()[0].removeAttribute("aria-current");
@@ -177,6 +189,11 @@ function nk() {
 	$(top.document).find(".carousel-indicators").children()[2].removeAttribute("aria-current");
 	$(top.document).find(".carousel-indicators").children()[3].setAttribute("class", "active");
 	$(top.document).find(".carousel-indicators").children()[3].setAttribute("aria-current", "true");
+	$(top.document).find(".carousel-inner").children()[0].setAttribute("class", "carousel-item");
+	$(top.document).find(".carousel-inner").children()[1].setAttribute("class", "carousel-item");
+	$(top.document).find(".carousel-inner").children()[2].setAttribute("class", "carousel-item");
+	$(top.document).find(".carousel-inner").children()[3].setAttribute("class", "carousel-item active");
+	
 	
 	//비정상 체온 등록될 때 socket으로 데이터 전송
 	var socket = io('http://localhost:3000/');

@@ -1,5 +1,8 @@
 package org.fp.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.fp.domain.BoardVO;
 import org.fp.domain.UserVO;
 import org.junit.Test;
@@ -24,8 +27,8 @@ public class UserServiceTests {
 		log.info("특정일 데이터");
 		BoardVO vo = new BoardVO();
 		vo.setBizNo("6429200357");
-		vo.setRegdate("%2021-05-11%");
-		log.info("specific date list...." + service.specificDate(vo));
+		vo.setRegdate("%2021-05-12%");
+		log.info("specific date list...." + service.boardList(vo));
 	}
 	
 	//@Test
@@ -63,10 +66,13 @@ public class UserServiceTests {
 	//@Test
 	public void testList() {
 		log.info("Board List Test....");
-		UserVO user = new UserVO();
-		user.setBizNo("6429200357");
-		
-		log.info(service.boardList(user));
+		BoardVO vo = new BoardVO();
+		vo.setBizNo("6429200357");
+		SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd" );
+		Date time = new Date();
+		String now = format.format(time);
+		now = "%" + now + "%";
+		log.info(service.boardList(vo));
 	}
 
 }

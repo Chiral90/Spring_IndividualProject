@@ -1,4 +1,4 @@
-<%@ include file="../includes/header.jsp" %>
+<%@ include file="../includes/userHeader.jsp" %>
 <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/resources/css/form-validation.css" rel="stylesheet">
@@ -9,7 +9,7 @@
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
 <link href="/resources/css/signin.css" rel="stylesheet">
-  <body class="text-center">
+  <section class="text-center">
     
 <main class="form-signin">
   <form class='needs-validation' action="/user/signin" method="post">
@@ -33,11 +33,11 @@
       </label>
     </div>
     <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+    <!-- <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p> -->
   </form>
 </main>
 
-
+</section>
     
   </body>
 

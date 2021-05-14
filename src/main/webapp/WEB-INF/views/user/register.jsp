@@ -1,4 +1,4 @@
-<%@ include file="../includes/header.jsp" %>
+<%@ include file="../includes/userHeader.jsp" %>
 <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/resources/css/form-validation.css" rel="stylesheet">
@@ -6,7 +6,7 @@
 <script type="text/javascript" src="/resources/js/register.js"></script>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<body class="bg-light">
+<section>
 
 <div class="container">
   <main>
@@ -122,19 +122,14 @@
      </main>
     </div>
 
+
   
   
 <!-- footer -->
   <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">&copy; 2017–2021 Company Name</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="#">Terms</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
+    
   </footer>
-</div>
-
+    </section>
 
     <script src="/resources/js/bootstrap.bundle.min.js"></script>
 

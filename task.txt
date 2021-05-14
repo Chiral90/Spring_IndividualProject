@@ -1,14 +1,29 @@
+5/14
+monitoring
+status 신규/불응 강조
+지역별 발생 횟수 - 모달창 + https://coding-restaurant.tistory.com/65 도넛 그래프
+
+업체 별 기록
+일자 별 기록 뽑기
+
+5/13
+measure
+짤 만들기 - x
+
+monitoring
+nav menu - user list 등 db의 모든 항목 접근할 수 있어야 - ing
+
 5/12
 board
-this week 구현 - 원하는 날짜 클릭 시 그때 데이터 로딩 & 페이징
-share, export 제거 or 구현
+this week 구현 - 원하는 날짜 클릭 시 그때 데이터 로딩 & 페이징 - x
+share, export 제거 or 구현 - x
 
 measure
-carousel 보강 - 전환 더 깔끔하게, 그림 or 문구 더 넣기
+carousel 보강 - 전환 더 깔끔하게, 그림 or 문구 더 넣기 - o
 아두이노 적용하면 수정해야할 것들 구상
 
 monitoring
-nav menu 구상
+nav menu 구상 - o
 지도 이동 시 애니메이션 구상
 이상 체온 검출 로그 업데이트 시 신규 항목 강조 방법 구상
 이상 체온 검출 로그 행 갯수 생각해볼 것

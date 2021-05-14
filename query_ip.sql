@@ -44,10 +44,10 @@ create table united_board (
     phoneNo varchar(12),
     temp varchar(5),
     regdate date,
-    updateDate date
+    updateDate date,
+    status varchar(10)
 );
-alter table united_board add constraint fk_united_board foreign key (bizNo) references user (bizNo);
-alter table united_board drop foreign key fk_united_board;
+alter table united_board add status varchar(10);
 select * from user where bizNo = 'admin' and pw = '1111';
 desc united_board;
 select DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s');
@@ -68,6 +68,7 @@ from user u, united_board b
 where u.bizNo = b.bizNo and (b.temp < 35.5 or b.temp > 37.5) and b.regdate >= curdate();
 alter table united_board modify regdate datetime;
 alter table united_board modify updateDate datetime;
+alter table united_board modify status varchar(10) default "신규";
 select * from user;
 insert into united_board
 (bizNo, name, addr, phoneNo, temp, regdate)
@@ -80,3 +81,4 @@ regdate >= curdate();
 show variables where variable_name like '%log%';
 drop table u0000000000;
 select * from user;
+update united_board set status = "완료", updateDate = now() where bno = "99";

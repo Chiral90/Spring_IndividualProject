@@ -47,13 +47,13 @@ public class UserControllerTests {
 	
 	@Test
 	public void testSpecificDate() throws Exception {
-		String regdate = "%2021-05-11%";
+		String regdate = "%2021-05-12%";
 		session = new MockHttpSession();
 		UserVO user = new UserVO();
 		user.setBizNo("6429200357");
 		session.setAttribute("user", user);
 		log.info(
-				mockMvc.perform(MockMvcRequestBuilders.post("/user/specificDate")
+				mockMvc.perform(MockMvcRequestBuilders.post("/user/board")
 						.param("regdate", regdate)
 						.session(session))
 				.andReturn().getModelAndView().getModelMap()

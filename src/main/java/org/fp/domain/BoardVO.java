@@ -1,7 +1,5 @@
 package org.fp.domain;
 
-import java.util.Date;
-
 import lombok.Data;
 
 @Data
@@ -14,6 +12,7 @@ public class BoardVO {
 	private String temp;
 	private String regdate;
 	private String updateDate;
+	private String status;
 	//private String regdate;
 	//private String updateDate;
 

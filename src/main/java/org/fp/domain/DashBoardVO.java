@@ -1,7 +1,5 @@
 package org.fp.domain;
 
-import java.util.Date;
-
 import lombok.Data;
 
 @Data
@@ -14,6 +12,9 @@ public class DashBoardVO {
 	private String addr;
 	private String phoneNo;
 	private String regdate;
+	private String updateDate;
 	private String lati;
 	private String longi;
+	private String status;
+	private String bno;
 }

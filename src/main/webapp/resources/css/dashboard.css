@@ -7,3 +7,6 @@ body {
   height: 16px;
   vertical-align: text-bottom;
 }
+main {
+	margin: auto auto;
+}

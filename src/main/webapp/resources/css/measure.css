@@ -1,0 +1,18 @@
+@charset "UTF-8";
+.carousel-caption {
+
+    color: #313131 !important;
+
+    text-shadow: none !important;
+
+
+}
+main {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center !important;
+}
+
+#myCarousel {
+	width: 80%;
+}

@@ -23,8 +23,8 @@
 	
 	<!-- 방문객 데이터 등록 -->
 	<insert id="insertData">
-		insert into united_board (bizNo, name, addr, phoneNo, temp, regdate)
-		values ( #{bizNo}, #{name}, #{addr}, #{phoneNo}, #{temp}, now() )
+		insert into united_board (bizNo, name, addr, phoneNo, temp, regdate, status)
+		values ( #{bizNo}, #{name}, #{addr}, #{phoneNo}, #{temp}, now(), #{status} )
 	</insert>
 	
 	<!-- 로그인 세션용 조회 -->
@@ -33,25 +33,41 @@
 	</select>
 	
 	<!-- 오늘 방문 기록 -->
-	<select id="boardList" resultType="org.fp.domain.BoardVO" parameterType="org.fp.domain.UserVO">
+	<select id="boardList" resultType="org.fp.domain.BoardVO" parameterType="org.fp.domain.BoardVO">
 		<![CDATA[
-			select * from united_board where bizNo = #{bizNo} and regdate >= curdate()
+			select * from united_board where bizNo = #{bizNo} and regdate like #{regdate}
 		]]>
 	</select>
 	
 	<!-- 특정일 방문 기록 - 자바스크립트에서 String regdate 받아올 때 앞/뒤 % 붙일 것-->
-	<select id="specificDate" resultType="org.fp.domain.BoardVO" parameterType="org.fp.domain.BoardVO">
+	<!-- <select id="specificDate" resultType="org.fp.domain.BoardVO" parameterType="org.fp.domain.BoardVO">
 			select * from united_board where bizNo = #{bizNo} and regdate like #{regdate}
-	</select>
+	</select> -->
 	
 	<!-- 이상 체온 리스트 -->
 	<select id="monitorList" resultType="org.fp.domain.DashBoardVO">
 		<![CDATA[
-			select u.corpName, u.corpPhoneNo, b.temp, b.name, b.addr, b.phoneNo, b.regdate, u.lati, u.longi
+			select u.corpName, u.corpPhoneNo, b.temp, b.name, b.addr, b.phoneNo, b.regdate, u.lati, u.longi, b.bno, b.status
 			from user u, united_board b 
 			where u.bizNo = b.bizNo and (b.temp < 35.5 or b.temp > 37.5) and b.regdate >= curdate() order by b.regdate desc
 		]]>
 	</select>
 	
+	<!-- 검출 로그 상태 업데이트 -->
+	<update id="updateStatus" parameterType="hashMap">
+		update united_board set status = #{status}, updateDate = now() where bno = #{bno}
+	</update>
+	
+	<!-- 유저 리스트 -->
+	<select id="userList" resultType="org.fp.domain.UserVO">
+		select bizNo, corpName, addr, corpPhoneNo, sectors from user where bizNo not in("admin")
+	</select>
+	
+	<!-- 업체 별 기록 -->
+	<select id="dailyList" resultType="org.fp.domain.BoardVO" parameterType="org.fp.domain.BoardVO">
+		<![CDATA[
+			select * from united_board where bizNo = #{bizNo} and regdate like #{regdate}
+		]]>
+	</select>
 
 </mapper>

@@ -1,5 +1,9 @@
 package org.fp.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.Setter;
@@ -107,7 +112,8 @@ public class UserController {
 	//회원 가입 페이지로 화면 이동
 	@GetMapping("/register")
 	public void resgister(HttpSession session) {
-		session.invalidate(); //회원가입 페이지로 이동하면 세션 클리어
+		//session.invalidate(); //회원가입 페이지로 이동하면 세션 클리어
+		session.removeAttribute("user");
 	}
 		
 	//회원 가입 제출, db insert
@@ -139,33 +145,21 @@ public class UserController {
 	
 	//방문 기록 페이지로 화면 이동
 	@GetMapping("/board")
-	public String board(Model model, HttpSession session) {
+	public String board(String regdate, Model model, HttpSession session) {
 		//log.info(session.getAttribute("user"));
 		if (Objects.nonNull(session.getAttribute("user"))) {
 			UserVO user = (UserVO) session.getAttribute("user");
-			model.addAttribute("list", service.boardList(user));
+			BoardVO vo = new BoardVO();
+			regdate = "%" + regdate + "%";
+			vo.setBizNo(user.getBizNo());
+			vo.setRegdate(regdate);
+			model.addAttribute("list", service.boardList(vo));
 			return "/user/board";
 		} else {
 			session.invalidate();
 			return "redirect:/user/signin";
 		}
 	}
-	
-	//방문 기록 페이지에서 특정한 날짜 리스트 불러오기
-	@ResponseBody
-	@PostMapping("/specificDate")
-	public void specificDate(String regdate, Model model, HttpSession session) {
-		if (Objects.nonNull(session.getAttribute("user"))) {
-			UserVO user = (UserVO) session.getAttribute("user");
-			BoardVO vo = new BoardVO();
-			vo.setBizNo(user.getBizNo());
-			vo.setRegdate(regdate);
-			model.addAttribute("list2", service.specificDate(vo));
-			log.info(vo.getBizNo() + " Go to specificDate : " + vo.getRegdate());
-		}
-		
-	}
-	
 
 	//모니터링 페이지로 화면 이동
 	@GetMapping("/monitoring")
@@ -184,5 +178,34 @@ public class UserController {
 	@PostMapping("/measureAction")
 	public void measureAction() {
 		log.info("Measure Action");
+	}
+	
+	@GetMapping("/userList")
+	public void userList(Model model) {
+		log.info("user list at new window");
+		model.addAttribute("list", service.userList());
+	}
+	
+	@ResponseBody
+	@PostMapping("/updateStatus")
+	public void updateStatus(String bno, String status) {
+		Map map = new HashMap();
+		map.put("bno", bno);
+		map.put("status", status);
+		log.info("update status.... bno : " + bno + " status : " + status);
+		service.updateStatus(map);
+	}
+	
+	@GetMapping("/dailyList")
+	public void dailyList(String bizNo, String regdate, Model model) {
+		BoardVO vo = new BoardVO();
+		//SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd" );
+		//Date time = new Date();
+		//String now = format.format(time);
+		regdate = "%" + regdate + "%";
+		vo.setBizNo(bizNo);
+		vo.setRegdate(regdate);
+		model.addAttribute("list", service.dailyList(vo));
+		
 	}
 }

@@ -50,18 +50,30 @@ public class UserServiceImpl implements UserService {
 		return mapper.login(user);
 	}
 	
-	public List<BoardVO> boardList(UserVO user) {
-		log.info("board list...." + user.getCorpName());
-		return mapper.boardList(user);
+	public List<BoardVO> boardList(BoardVO vo) {
+		log.info("board list...." + vo.getBizNo());
+		return mapper.boardList(vo);
 	}
-	
+	/*
 	public List<BoardVO> specificDate(BoardVO vo) {
 		log.info("specific date list..." + vo.getBizNo() + " at " + vo.getRegdate());
 		return mapper.specificDate(vo);
 	}
-	
+	*/
 	public List<BoardVO> monitorList() {
 		log.info("monitor list....");
 		return mapper.monitorList();
+	}
+	
+	public List<UserVO> userList() {
+		return mapper.userList();
+	}
+	
+	public void updateStatus(Map map) {
+		mapper.updateStatus(map);
+	}
+	
+	public List<BoardVO> dailyList(BoardVO vo) {
+		return mapper.dailyList(vo);
 	}
 }
