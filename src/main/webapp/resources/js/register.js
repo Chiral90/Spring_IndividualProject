@@ -68,7 +68,9 @@ $(document).ready(function(){
 	$("#bizNo").on("propertychange change keyup paste input", function(){
 		var inputBizNo = $(this).val();
 		var regBizNo = /^\d{3}-?\d{2}-?\d{5}$/;
-		if (regBizNo.test(inputBizNo)) {
+		//console.log(inputBizNo);
+		//console.log(regBizNo.test(inputBizNo));
+		if (/^\d{3}-?\d{2}-?\d{5}$/.test(inputBizNo)) {
 			$(this).next()
 			.removeClass("invalid-feedback")
 			.addClass("valid-feedback")
@@ -80,15 +82,13 @@ $(document).ready(function(){
 			.html("사업자 번호를 다시 확인하세요").show();
 		}
 		//중복검사
-		var regBizNoWithH = /^\d{3}-\d{2}-\d{5}$/;
-		var regBizNoOnlyN = /^\d{10}$/;
 		if (
 				/^\d{3}-\d{2}-\d{5}$/.test(inputBizNo) ||
 				/^\d{3}-?\d{2}-\d{5}$/.test(inputBizNo) ||
 				/^\d{3}-\d{2}-?\d{5}$/.test(inputBizNo)) {
 			var bizNo = inputBizNo.replaceAll("-", "");
 			//$("#bizNo").val(bizNo); // 자동으로 '-' 없애줌
-			//console.log($("#bizNo").val());
+			//console.log("중복검사 ('-'포함) : " + $("#bizNo").val());
 			var chkData = {bizNo : bizNo};
 			$.ajax({
 				type : "post",
@@ -122,6 +122,7 @@ $(document).ready(function(){
 			var bizNo = inputBizNo;
 			$("#bizNo").val(bizNo);
 			//console.log($("#bizNo").val());
+			//console.log("중복검사 ('-'미포함) : " + $("#bizNo").val());
 			var bizNo = $("#bizNo").val();
 			var chkData = {bizNo : bizNo};
 			$.ajax({
@@ -201,7 +202,7 @@ $(document).ready(function(){
 		
 		
 		//필수 제출
-		console.log($("input[required]"));
+		//console.log($("input[required]"));
 		for (var i in $("input[required]")) {
 			if (  i.val()=="" ) {
 				console.log(i);

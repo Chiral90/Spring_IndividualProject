@@ -1,3 +1,13 @@
+5/17
+monitoring
+after refreshing status javascript 적용방법 고민 - o
+
+업체 별 기록
+사업자 번호 or 상호명 검색 기능
+
+board
+페이징
+
 5/14
 monitoring
 status 신규/불응 강조

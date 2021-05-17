@@ -84,7 +84,7 @@
           <tbody>
               <c:forEach items="${list}" var="board">
 	           	<tr>
-	           		<td><c:out value="${board.bno }" /></td>
+	           		<td><c:out value="${board.rn }" /></td>
 	           		<td><c:out value="${board.name }" /></td>
 	           		<td><c:out value="${board.addr }" /></td>
 	           		<td><c:out value="${board.phoneNo }" /></td>

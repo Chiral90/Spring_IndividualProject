@@ -10,3 +10,7 @@ body {
 main {
 	margin: auto auto;
 }
+
+a {
+	text-decoration: none;
+}

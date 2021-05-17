@@ -19,13 +19,13 @@ app.get('/', function(req, res){});
 //2  
 io.on('connection', function(socket){
     console.log('클라이언트 연결됨. 소켓 id는 : ', socket.id);  //2-1
-    socket.on("status", (arg1, arg2, arg3) => {
+    socket.on("status", (arg1, arg2, arg3, arg4, arg5) => {
     	console.log(arg1);
     	console.log(arg2);
     	console.log(arg3);
     	if (arg1 == "warning") {
-    		console.log("status" + arg1);
-    		io.emit("status", "warning", arg2, arg3);
+    		console.log("status " + arg1 + " at " + arg4 + " cell " + arg5);
+    		io.emit("status", "warning", arg2, arg3, arg4, arg5);
     	}
     });
     socket.on('disconnect', function(){   //2-2

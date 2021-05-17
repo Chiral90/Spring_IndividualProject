@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="/resources/js/header.js"></script>
+<script type="text/javascript" src="/resources/js/userHeader.js"></script>
 </head>
 <body>
 <div class="userHeader">
@@ -20,13 +20,13 @@
 
     <ul class="nav nav-pills">
       <!-- <li class="nav-item"><a href="/user/monitoring" class="nav-link">모니터링</a></li> -->
-      <li class="nav-item"><a href="/user/measure" class="nav-link">측정</a></li>
-      <li class="nav-item"><a href="/user/board" class="nav-link">방문 기록</a></li>
+      <li class="nav-item"><a href="/user/measure" class="nav-link measure">측정</a></li>
+      <li class="nav-item"><a href="/user/board" class="nav-link board">방문 기록</a></li>
       <li class="nav-item"><a href="" class="nav-link">FAQs</a></li>
       <li class="nav-item"><a href="" class="nav-link">About</a></li>
       <li class="nav-item"><a href="" id="sign" class="nav-link"></a>
-      <form id="form"><input type="hidden"></form></li>
+      <form id="form"><input type="hidden" id="bizNo" name="bizNo" value=<c:out value='${user.bizNo }' /> ><input type="hidden" id="regdate" name="regdate" value="${param.regdate }"></form></li>
     </ul>
-    <input type="hidden" id="user" name="user" value=<c:out value='${user.bizNo }' /> >
+    
 </header>
 </div>

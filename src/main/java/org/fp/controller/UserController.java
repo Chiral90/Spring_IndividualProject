@@ -17,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.Setter;
@@ -142,7 +141,7 @@ public class UserController {
 		} else return "fail";
 	}
 
-	
+/*	
 	//방문 기록 페이지로 화면 이동
 	@GetMapping("/board")
 	public String board(String regdate, Model model, HttpSession session) {
@@ -160,7 +159,7 @@ public class UserController {
 			return "redirect:/user/signin";
 		}
 	}
-
+*/
 	//모니터링 페이지로 화면 이동
 	@GetMapping("/monitoring")
 	public String monitoring(Model model, HttpSession session) {
@@ -196,15 +195,14 @@ public class UserController {
 		service.updateStatus(map);
 	}
 	
-	@GetMapping("/dailyList")
+	@GetMapping({"/dailyList", "/board"})
 	public void dailyList(String bizNo, String regdate, Model model) {
 		BoardVO vo = new BoardVO();
-		//SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd" );
-		//Date time = new Date();
-		//String now = format.format(time);
+		
 		regdate = "%" + regdate + "%";
 		vo.setBizNo(bizNo);
 		vo.setRegdate(regdate);
+		log.info("board list");
 		model.addAttribute("list", service.dailyList(vo));
 		
 	}

@@ -151,6 +151,8 @@ var socket = io('http://localhost:3000/');
               <label for="bizNo" class="form-label">사업자 번호</label>
               <div class="input-group has-validation">
                 <input type="text" class="form-control" id="bizNo" name="bizNo" value="${user.bizNo }" readonly>
+                <input type="hidden" id="corpName" name="corpName" value="${user.corpName }">
+                <input type="hidden" id="corpPhoneNo" name="corpPhoneNo" value="${user.corpPhoneNo }">
                 <input type="hidden" id="lati" name="lati" value="${user.lati }">
                 <input type="hidden" id="longi" name="longi" value="${user.longi }">
                 <input type="hidden" id="cnt" name="cnt" value="1">

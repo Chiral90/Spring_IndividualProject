@@ -66,7 +66,8 @@
 	<!-- 업체 별 기록 -->
 	<select id="dailyList" resultType="org.fp.domain.BoardVO" parameterType="org.fp.domain.BoardVO">
 		<![CDATA[
-			select * from united_board where bizNo = #{bizNo} and regdate like #{regdate}
+			select rn, name, addr, phoneNo, temp, regdate, updateDate, status from
+				(select @rownum:=@rownum+1 as rn, u.* from united_board u, (select @rownum:=0) as tmp where bizNo = #{bizNo} and regdate like #{regdate}) as t;
 		]]>
 	</select>
 

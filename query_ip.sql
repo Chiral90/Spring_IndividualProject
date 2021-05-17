@@ -59,7 +59,6 @@ select b.*, u.* from united_board b, user u where b.bizNo = u.bizNo;
 set sql_safe_updates = 0;
 delete from user where bizNo='6429200358';
 delete from united_board where bizNo='0';
-drop table u6429200358;
 alter table user change phoneNo corpPhoneNo varchar(12);
 alter table united_board modify temp varchar(5) not null;
 select * from united_board;
