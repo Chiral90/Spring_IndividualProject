@@ -18,4 +18,5 @@ public interface UserService {
 	public List<UserVO> userList();
 	public void updateStatus(Map map);
 	public List<BoardVO> dailyList(BoardVO vo);
+	public List<UserVO> searchUser(String keyword);
 }

@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.Setter;
@@ -178,13 +179,43 @@ public class UserController {
 	public void measureAction() {
 		log.info("Measure Action");
 	}
-	
+
 	@GetMapping("/userList")
 	public void userList(Model model) {
 		log.info("user list at new window");
 		model.addAttribute("list", service.userList());
 	}
-	
+	//userList 화면에서 ajax로 교환하고, table div만 refresh 하는 것도 괜찮을듯? -> model을 새로 받아올 수 있나? 이전에 model의 문제가 있었음 (ajax로 새로 받아오지 못했는데, refresh후 callback함수로 /user/searchUser 실행하면 가능한가?
+	@GetMapping("/searchUser")
+	public String searchUser(@RequestParam("keyword") String keyword, Model model) {
+		keyword = "%" + keyword + "%";
+		log.info("search user by " + keyword);
+		model.addAttribute("list", service.searchUser(keyword));
+		return "user/userList";
+	}
+	/*
+	@GetMapping("/userList")
+	public void userList(@RequestParam("keyword") String keyword, Model model) {
+		keyword = "%" + keyword + "%";
+		log.info("search user by keyword : "+ keyword);
+		model.addAttribute("list", service.searchUser(keyword));
+	}
+	*/
+	/*
+	@GetMapping("/userList")
+	public void userList(@RequestParam("keyword") String keyword, Model model) {
+		log.info("original keyword : " + keyword);
+		log.info("isNull : " + Objects.isNull(keyword));
+		if (keyword.equals("") || Objects.isNull(keyword) || keyword == null) {
+			log.info("user list at new window");
+			model.addAttribute("list", service.userList());
+		} else {
+			keyword = "%" + keyword + "%";
+			log.info("search user by keyword : " + keyword);
+			model.addAttribute("list", service.searchUser(keyword));
+		}
+	}
+	*/
 	@ResponseBody
 	@PostMapping("/updateStatus")
 	public void updateStatus(String bno, String status) {

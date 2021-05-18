@@ -70,5 +70,10 @@
 				(select @rownum:=@rownum+1 as rn, u.* from united_board u, (select @rownum:=0) as tmp where bizNo = #{bizNo} and regdate like #{regdate}) as t;
 		]]>
 	</select>
+	
+	<!-- 유저 검색 -->
+	<select id="searchUser" resultType="org.fp.domain.UserVO" parameterType="string">
+		select * from user where (bizNo like #{keyword} or corpName like #{keyword}) and bizNo not in("admin")
+	</select>
 
 </mapper>

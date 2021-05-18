@@ -1,8 +1,25 @@
 /**
  * 
  */
-// 자바스크립트단에서 별도로 세션생성해서 로그인/로그아웃 처리
+// 자바스크립트단에서 별도로 세션생성해서 로그인/로그아웃 처리 (userHeader.jsp에 web session 변수를 저장하는 input이 있어서 굳이 js로 안해도됨
 $(document).ready(function(){
+	if ($("#bizNo").val() != "") {
+		$("#sign").html("로그아웃");
+		var f = $("#form");
+		$("#sign").on("click", function(e){
+	  		e.preventDefault();
+	  		f.attr("action", "/user/signout")
+	  		.attr("method", "post").submit();
+	  		sessionStorage.clear();
+	  	  });
+	} else {
+		$("#sign").html("로그인");
+		var f = $("#form");
+	  	$("#sign").on("click", function(e){
+	  		$(this).attr("href", "/user/signin");
+	  	});
+	}
+	/*
 	var status = sessionStorage.getItem("status");
 	//console.log(status);
 	if (status == "signin") {
@@ -21,7 +38,7 @@ $(document).ready(function(){
 	  		$(this).attr("href", "/user/signin");
 	  	});
 	}
-	
+	*/
 	$(".board").on("click", function(e){
 		e.preventDefault();
 		console.log($("input[name='bizNo']").val());

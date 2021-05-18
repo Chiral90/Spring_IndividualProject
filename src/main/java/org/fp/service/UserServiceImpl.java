@@ -76,4 +76,8 @@ public class UserServiceImpl implements UserService {
 	public List<BoardVO> dailyList(BoardVO vo) {
 		return mapper.dailyList(vo);
 	}
+	
+	public List<UserVO> searchUser(String keyword) {
+		return mapper.searchUser(keyword);
+	}
 }

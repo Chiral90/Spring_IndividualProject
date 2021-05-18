@@ -57,6 +57,7 @@
     
     <li class="nav-item text-nowrap">
       <a class="nav-link" id="sign" href="#"></a><form id="form"><input type="hidden"></form>
+      <input name="bizNo" type="hidden" value="<c:out value='${user.bizNo }' /> ">
     </li>
   </ul>
 </nav>

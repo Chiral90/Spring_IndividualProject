@@ -19,7 +19,7 @@
       <!-- Naver Map api -->
 		<div class="my-4 w-100">
 		
-			<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4lz2pt0zi5"></script>
+			<!-- <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=4lz2pt0zi5"></script> -->
    
 				<div id="map" style="width:900;height:600px"></div>
 		
