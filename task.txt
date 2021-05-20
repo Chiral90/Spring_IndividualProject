@@ -3,6 +3,8 @@ node : https://psyhm.tistory.com/5?category=654716
 rest & json : https://nesoy.github.io/articles/2017-02/JSON, https://2ham-s.tistory.com/235
 ajax : https://coding-factory.tistory.com/143
 css : https://medium.com/ufofactory-org/%ED%99%94%EB%A9%B4%EC%9D%84-%EB%8D%94-%ED%92%8D%EC%84%B1%ED%95%98%EA%B2%8C-%ED%95%B4%EC%A3%BC%EB%8A%94-javascript-library-b86d3ae79fb8
+flex : https://d2.naver.com/helloworld/8540176
+부트스트랩 사이드바 : https://blog.readiz.com/176
 
 monitoring 참고 : https://kimchanjung.github.io/tech/2020/05/08/real-time-service/
 adminHeader - 지역별 발생 횟수 -> 모달창으로 차트 잠깐 띄우기 or nav위치에 출력

@@ -2,15 +2,38 @@ body {
   font-size: .875rem;
 }
 
+.container-fluid {
+	display: flex;
+	flex-direction: row;
+	
+}
+.row {
+	width: 100%;
+}
+.sidebar {
+	width: 100%;
+}
 .feather {
   width: 16px;
   height: 16px;
   vertical-align: text-bottom;
 }
+/* 
 main {
 	margin: auto auto;
 }
-
+ */
+main {
+	margin-left: auto;
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 0;
+}
 a {
 	text-decoration: none;
 }
+/* chart css */
+.sidebar-sticky {
+	margin-top: 10%;
+}
+/* chart css end */

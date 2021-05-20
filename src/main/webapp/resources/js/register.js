@@ -2,34 +2,6 @@
  * 
  */
 
-/*
-function pwSuccess($elem) {
-	$elem
-	.next()
-	.removeClass("invalid-feedback")
-	.addClass("valid-feedback")
-	.removeClass("glyphicon-remove")
-	.addClass("glyphicon-ok")
-	.html("사용가능한 비밀번호입니다")
-	.show()
-	.before()
-	.removeClass("has-error")
-	.addClass("has-success")
-}
-function pwError($elem) {
-	$elem
-	.next()
-	.addClass("invalid-feedback")
-	.removeClass("glyphicon-ok")
-	.addClass("glyphicon-remove")
-	.html("비밀번호는 최소 8 자, 최소 하나의 문자 및 하나의 숫자로 작성해야합니다.")
-	.show()
-	.before()
-	.removeClass("has-success")
-	.addClass("has-error")
-	.show()
-}
-*/
 $(document).ready(function(){
 	//상호명 유효성 검증
 	$("#corpName").on("propertychange change keyup paste input", function(){

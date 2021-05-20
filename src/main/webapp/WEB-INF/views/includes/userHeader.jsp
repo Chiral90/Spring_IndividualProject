@@ -13,7 +13,7 @@
 <body>
 <div class="userHeader">
   <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-    <a href="/main" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
       <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-4">FootPrint</span>
     </a>
@@ -25,7 +25,7 @@
       <li class="nav-item"><a href="" class="nav-link">FAQs</a></li>
       <li class="nav-item"><a href="" class="nav-link">About</a></li>
       <li class="nav-item"><a href="" id="sign" class="nav-link"></a>
-      <form id="form"><input type="hidden" id="bizNo" name="bizNo" value=<c:out value='${user.bizNo }' /> ><input type="hidden" id="regdate" name="regdate" value="${param.regdate }"></form></li>
+      <form id="form"><input type="hidden" name="bizNo" value=<c:out value='${user.bizNo }' /> ><input type="hidden" name="regdate" value="${param.regdate }"></form></li>
     </ul>
     
 </header>

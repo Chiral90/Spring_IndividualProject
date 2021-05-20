@@ -3,7 +3,7 @@
  */
 // 자바스크립트단에서 별도로 세션생성해서 로그인/로그아웃 처리 (userHeader.jsp에 web session 변수를 저장하는 input이 있어서 굳이 js로 안해도됨
 $(document).ready(function(){
-	if ($("#bizNo").val() != "") {
+	if ($("input[name='bizNo']").val() != "") {
 		$("#sign").html("로그아웃");
 		var f = $("#form");
 		$("#sign").on("click", function(e){

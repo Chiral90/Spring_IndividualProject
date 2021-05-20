@@ -115,7 +115,7 @@
 
           <hr class="my-4">
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+          <button class="w-100 btn btn-primary btn-lg" type="submit">사업자 초기 정보 등록</button>
          
         </form>
       </div>
