@@ -11,13 +11,13 @@ section {
   padding-top: 80px;
   padding-bottom: 80px;
   margin-top: 5%;
-  
+  /* 
   background-image: url("/resources/img/main4.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-blend-mode: overlay;
-  
+   */
 }
 
 .form-signin {

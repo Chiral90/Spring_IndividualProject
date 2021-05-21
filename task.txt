@@ -1,3 +1,7 @@
+5/21
+web ppt : http://icunow.co.kr/powerpoint5/
+자소서쓰기, 진로 알아보기
+
 5/18
 node : https://psyhm.tistory.com/5?category=654716
 rest & json : https://nesoy.github.io/articles/2017-02/JSON, https://2ham-s.tistory.com/235

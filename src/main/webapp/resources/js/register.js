@@ -171,6 +171,22 @@ $(document).ready(function(){
 			//console.log($("#bizNo").val());
 			
 		}
+		//전화번호 '-'빼고 제출
+		var inputCorpPhoneNo = $("#corpPhoneNo").val();
+		if (/^\d{3}-\d{4}-\d{4}$/.test(inputBizNo) ||
+				/^\d{3}-?\d{4}-\d{4}$/.test(inputBizNo) ||
+				/^\d{3}-\d{4}-?\d{4}$/.test(inputBizNo)) {
+			var corpPhoneNo = inputCorpPhoneNo.replaceAll("-", "");
+			$("#corpPhoneNo").val(corpPhoneNo);
+			//console.log($("#bizNo").val());
+			
+		}
+		if (/^\d{10}$/.test(inputCorpPhoneNo)) {
+			var corpPhoneNo = inputCorpPhoneNo;
+			$("#corpPhoneNo").val(corpPhoneNo);
+			//console.log($("#bizNo").val());
+			
+		}
 		
 		
 		//필수 제출
@@ -182,7 +198,6 @@ $(document).ready(function(){
 			}
 		}
 		//if ( $("input[required]") )
-		
 		if ( $("#lati").val()=="" ||
 				$("#longi").val()=="" ) {
 			$("#lati").removeClass("is-valid");
@@ -196,9 +211,6 @@ $(document).ready(function(){
 			$("#longi").removeClass("is-invalid");
 			$("#longi").addClass("is-valid");
 		}
-		
-		
-		
 		
 	});
 	//링크 버튼 클릭
@@ -219,5 +231,18 @@ $(document).ready(function(){
 		$("#lati").val(lati);
 		$("#longi").val(longi);
 	});
+	
+	//매뉴얼 버튼
+	$("#manualBtn").click(function(e){
+		e.preventDefault();
+		//console.log("open modal");
+        $("#manual").modal("show");
+    });
+	$(".close").click(function(e){
+		e.preventDefault();
+		//console.log("open modal");
+        $("#manual").modal("hide");
+    });
+
 	
 });
