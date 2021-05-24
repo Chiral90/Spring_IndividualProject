@@ -3,7 +3,7 @@ web ppt : http://icunow.co.kr/powerpoint5/
 자소서쓰기, 진로 알아보기
 
 5/18
-node : https://psyhm.tistory.com/5?category=654716
+node : https://psyhm.tistory.com/5?category=654716, https://javafa.gitbooks.io/nodejs_server_basic/content/chapter2.html
 rest & json : https://nesoy.github.io/articles/2017-02/JSON, https://2ham-s.tistory.com/235
 ajax : https://coding-factory.tistory.com/143
 css : https://medium.com/ufofactory-org/%ED%99%94%EB%A9%B4%EC%9D%84-%EB%8D%94-%ED%92%8D%EC%84%B1%ED%95%98%EA%B2%8C-%ED%95%B4%EC%A3%BC%EB%8A%94-javascript-library-b86d3ae79fb8

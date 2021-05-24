@@ -122,8 +122,8 @@ public class UserController {
 	public String insertUser(UserVO user) {
 		//String sql = "create table u" + user.getBizNo() + " (bno bigint primary key auto_increment, "; // 테이블 생성용 sql. 댓글형식으로 할거면 필요 없음
 		//sql += "name varchar(20), addr varchar(100), phoneNo varchar(12), regdate date, updateDate date)";
-		
 		//service.registerUser(user, sql);
+		
 		service.register(user);
 		
 		log.info("insert : " + user + "@Controller");

@@ -30,14 +30,14 @@
                 </div>
             </div>
 			
-            <div class="col-12">
+            <div class="col-12 bizNoContainer">
               <label for="bizNo" class="form-label">사업자 번호 (ID)</label>            
                 <input type="text" class="form-control" id="bizNo" name="bizNo" placeholder="" value="" required>
                 
-                <div class="chk invalid-feedback">
+                <div class="chk invalid-feedback col-lg-6">
                  	사업자 번호는 필수 입력입니다.
                 </div>
-                <div></div><div></div>
+                <div class="col-lg-6"></div>
             </div>
 
             <div class="col-12">

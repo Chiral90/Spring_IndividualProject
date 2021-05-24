@@ -163,6 +163,10 @@ function btnAct() { // chart의 data로 접근할 수 있는 방법?
 		
 		$(this).parent().next().html("완료");
 		$(this).parent().next().css("color", "green");
+		var updateChart = $(".sidebar-sticky").load(location.href + " .sidebar-sticky", function() {
+			//차트 업데이트
+			callChart();
+		});
 	});
 	var waitedBtn = $(".btn-warning");
 	$(".btn-warning").click(function(){
@@ -184,6 +188,10 @@ function btnAct() { // chart의 data로 접근할 수 있는 방법?
 		});
 		$(this).parent().next().html("대기");
 		$(this).parent().next().css("color", "yellow");
+		var updateChart = $(".sidebar-sticky").load(location.href + " .sidebar-sticky", function() {
+			//차트 업데이트
+			callChart();
+		});
 	});
 	var failBtn = $(".btn-danger");
 	$(".btn-danger").click(function(){
@@ -205,6 +213,10 @@ function btnAct() { // chart의 data로 접근할 수 있는 방법?
 		});
 		$(this).parent().next().html("불응");
 		$(this).parent().next().css("color", "red");
+		var updateChart = $(".sidebar-sticky").load(location.href + " .sidebar-sticky", function() {
+			//차트 업데이트
+			callChart();
+		});
 	});
 }
 $(document).ready(function(){

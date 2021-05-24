@@ -125,14 +125,7 @@ var socket = io('http://localhost:3000/');
   <!-- 인서트 테스트 영역 -->
 
   
-  	<div class="test">
-  	  <style>
-    .test main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    }
-    </style>
+  	<div class="test col-lg-12">
   <main>
     <div class="py-5 text-center">
       <!-- <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->

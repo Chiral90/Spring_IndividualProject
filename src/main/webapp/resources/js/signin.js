@@ -44,7 +44,7 @@ $(document).ready(function(){
 			$("#floatingInput").val(bizNo);
 			//console.log($("#bizNo").val());
 			//session 생성
-			sessionStorage.setItem("status", "signin");
+			//sessionStorage.setItem("status", "signin");
 			
 		}
 		if (/^\d{10}$/.test(inputBizNo)) {
@@ -52,10 +52,10 @@ $(document).ready(function(){
 			$("#floatingInput").val(bizNo);
 			//console.log($("#bizNo").val());
 			//session 생성
-			sessionStorage.setItem("status", "signin");
+			//sessionStorage.setItem("status", "signin");
 		}
 		if (inputBizNo == "admin") {
-			sessionStorage.setItem("status", "signin");
+			//sessionStorage.setItem("status", "signin");
 		}
 		
 	});
