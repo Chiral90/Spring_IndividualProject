@@ -2,6 +2,8 @@
 web ppt : http://icunow.co.kr/powerpoint5/
 자소서쓰기, 진로 알아보기
 
+erd tool : https://velog.io/@wildmental/%EA%B7%B8%EB%A6%AC%EA%B8%B0-%EA%B7%80%EC%B0%AE%EC%9D%80-ERD-DBdiagram.io%EB%A1%9C-5%EB%B6%84%EB%A7%8C%EC%97%90-%EC%99%84%EC%84%B1%ED%95%98%EA%B8%B0
+
 5/18
 node : https://psyhm.tistory.com/5?category=654716, https://javafa.gitbooks.io/nodejs_server_basic/content/chapter2.html
 rest & json : https://nesoy.github.io/articles/2017-02/JSON, https://2ham-s.tistory.com/235
