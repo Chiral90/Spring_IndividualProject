@@ -235,6 +235,21 @@ public class UserController {
 		vo.setRegdate(regdate);
 		log.info("board list");
 		model.addAttribute("list", service.dailyList(vo));
-		
 	}
+	
+	@GetMapping({"/qna"})
+	public String qnaList(String bizNo, Model model, HttpSession session) {
+		UserVO vo = (UserVO) session.getAttribute("user");
+		bizNo = "%" + bizNo + "%";
+		if (Objects.nonNull(session.getAttribute("user")) && vo.isAdmin()) {
+			model.addAttribute("list", service.qnaList(bizNo));
+			return "redirect:/user/qnaList";
+		}
+		if (Objects.nonNull(session.getAttribute("user")) && !vo.isAdmin()) {
+			model.addAttribute("list", service.qnaList(bizNo));
+			return "r/user/userQnAList";
+		}
+		return "";
+	}
+	
 }

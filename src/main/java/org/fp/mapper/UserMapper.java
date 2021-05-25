@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.fp.domain.BoardVO;
+import org.fp.domain.QnaVO;
 import org.fp.domain.UserVO;
 
 public interface UserMapper {
@@ -20,4 +21,5 @@ public interface UserMapper {
 	public void updateStatus(Map map);			// 이상 체온 처리 현황
 	public List<BoardVO> dailyList(BoardVO vo);	// 업체 별 기록
 	public List<UserVO> searchUser(String keyword);	// 특정 유저 찾기
+	public List<QnaVO> qnaList(String bizNo);				// qna 게시판
 }

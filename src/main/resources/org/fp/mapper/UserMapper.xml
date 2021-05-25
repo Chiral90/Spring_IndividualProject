@@ -75,5 +75,15 @@
 	<select id="searchUser" resultType="org.fp.domain.UserVO" parameterType="string">
 		select * from user where (bizNo like #{keyword} or corpName like #{keyword}) and bizNo not in("admin")
 	</select>
+	
+	<!-- qna 게시판 -->
+	<insert id="qnaInsert">
+		insert into qna_board (category, bizNo, title, content, regdate)
+		values (#{category}, #{bizNo}, #{title}, #{content}, now())
+	</insert>
+	
+	<select id="qnaList" resultType="org.fp.domain.QnaVO">
+		select * from qna_board where bizNo like #{bizNo}
+	</select>
 
 </mapper>

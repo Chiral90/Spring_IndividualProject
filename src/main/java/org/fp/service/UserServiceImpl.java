@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.fp.domain.BoardVO;
+import org.fp.domain.QnaVO;
 import org.fp.domain.UserVO;
 import org.fp.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,5 +80,9 @@ public class UserServiceImpl implements UserService {
 	
 	public List<UserVO> searchUser(String keyword) {
 		return mapper.searchUser(keyword);
+	}
+	
+	public List<QnaVO> qnaList(String bizNo) {
+		return mapper.qnaList(bizNo);
 	}
 }
