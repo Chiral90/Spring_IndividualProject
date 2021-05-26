@@ -181,10 +181,17 @@ public class UserController {
 	}
 
 	@GetMapping("/userList")
-	public void userList(Model model) {
+	public void userList(Model model, HttpSession session) {
 		log.info("user list at new window");
-		model.addAttribute("list", service.userList());
+		
+		UserVO vo = (UserVO) session.getAttribute("user");
+		if (Objects.nonNull(session.getAttribute("user")) && vo.isAdmin()) {
+			model.addAttribute("list", service.userList());
+		} else {
+			session.invalidate();
+		}
 	}
+	
 	//userList 화면에서 ajax로 교환하고, table div만 refresh 하는 것도 괜찮을듯? -> model을 새로 받아올 수 있나? 이전에 model의 문제가 있었음 (ajax로 새로 받아오지 못했는데, refresh후 callback함수로 /user/searchUser 실행하면 가능한가?
 	@GetMapping("/searchUser")
 	public String searchUser(@RequestParam("keyword") String keyword, Model model) {

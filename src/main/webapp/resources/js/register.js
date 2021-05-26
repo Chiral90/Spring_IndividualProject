@@ -95,14 +95,14 @@ $(document).ready(function(){
 						$("#bizNo").next().next()
 						.removeClass("invalid-feedback col-lg-6")
 						.addClass("valid-feedback col-lg-6")
-						.html("등록 가능한 사업자 번호입니다").show();
+						.html("중복확인 : 등록 가능한 사업자 번호입니다").show();
 					} else { //실패 시 문구
 						$("#bizNo").removeClass("is-valid");
 						$("#bizNo").addClass("is-invalid");
 						$("#bizNo").next().next()
 						.removeClass("valid-feedback col-lg-6")
 						.addClass("invalid-feedback col-lg-6")
-						.html("이미 등록된 사업자 번호입니다").show();
+						.html("중복확인 : 이미 등록된 사업자 번호입니다").show();
 					}
 				}
 			});
