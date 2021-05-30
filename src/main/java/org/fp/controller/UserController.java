@@ -122,8 +122,8 @@ public class UserController {
 	public String insertUser(UserVO user) {
 		//String sql = "create table u" + user.getBizNo() + " (bno bigint primary key auto_increment, "; // 테이블 생성용 sql. 댓글형식으로 할거면 필요 없음
 		//sql += "name varchar(20), addr varchar(100), phoneNo varchar(12), regdate date, updateDate date)";
-		
 		//service.registerUser(user, sql);
+		
 		service.register(user);
 		
 		log.info("insert : " + user + "@Controller");
@@ -142,7 +142,7 @@ public class UserController {
 		} else return "fail";
 	}
 
-	
+/*	
 	//방문 기록 페이지로 화면 이동
 	@GetMapping("/board")
 	public String board(String regdate, Model model, HttpSession session) {
@@ -160,7 +160,7 @@ public class UserController {
 			return "redirect:/user/signin";
 		}
 	}
-
+*/
 	//모니터링 페이지로 화면 이동
 	@GetMapping("/monitoring")
 	public String monitoring(Model model, HttpSession session) {
@@ -179,13 +179,43 @@ public class UserController {
 	public void measureAction() {
 		log.info("Measure Action");
 	}
-	
+
 	@GetMapping("/userList")
 	public void userList(Model model) {
 		log.info("user list at new window");
 		model.addAttribute("list", service.userList());
 	}
-	
+	//userList 화면에서 ajax로 교환하고, table div만 refresh 하는 것도 괜찮을듯? -> model을 새로 받아올 수 있나? 이전에 model의 문제가 있었음 (ajax로 새로 받아오지 못했는데, refresh후 callback함수로 /user/searchUser 실행하면 가능한가?
+	@GetMapping("/searchUser")
+	public String searchUser(@RequestParam("keyword") String keyword, Model model) {
+		keyword = "%" + keyword + "%";
+		log.info("search user by " + keyword);
+		model.addAttribute("list", service.searchUser(keyword));
+		return "user/userList";
+	}
+	/*
+	@GetMapping("/userList")
+	public void userList(@RequestParam("keyword") String keyword, Model model) {
+		keyword = "%" + keyword + "%";
+		log.info("search user by keyword : "+ keyword);
+		model.addAttribute("list", service.searchUser(keyword));
+	}
+	*/
+	/*
+	@GetMapping("/userList")
+	public void userList(@RequestParam("keyword") String keyword, Model model) {
+		log.info("original keyword : " + keyword);
+		log.info("isNull : " + Objects.isNull(keyword));
+		if (keyword.equals("") || Objects.isNull(keyword) || keyword == null) {
+			log.info("user list at new window");
+			model.addAttribute("list", service.userList());
+		} else {
+			keyword = "%" + keyword + "%";
+			log.info("search user by keyword : " + keyword);
+			model.addAttribute("list", service.searchUser(keyword));
+		}
+	}
+	*/
 	@ResponseBody
 	@PostMapping("/updateStatus")
 	public void updateStatus(String bno, String status) {
@@ -196,16 +226,30 @@ public class UserController {
 		service.updateStatus(map);
 	}
 	
-	@GetMapping("/dailyList")
+	@GetMapping({"/dailyList", "/board"})
 	public void dailyList(String bizNo, String regdate, Model model) {
 		BoardVO vo = new BoardVO();
-		//SimpleDateFormat format = new SimpleDateFormat ( "yyyy-MM-dd" );
-		//Date time = new Date();
-		//String now = format.format(time);
+		
 		regdate = "%" + regdate + "%";
 		vo.setBizNo(bizNo);
 		vo.setRegdate(regdate);
+		log.info("board list");
 		model.addAttribute("list", service.dailyList(vo));
-		
 	}
+	
+	@GetMapping({"/qna"})
+	public String qnaList(String bizNo, Model model, HttpSession session) {
+		UserVO vo = (UserVO) session.getAttribute("user");
+		bizNo = "%" + bizNo + "%";
+		if (Objects.nonNull(session.getAttribute("user")) && vo.isAdmin()) {
+			model.addAttribute("list", service.qnaList(bizNo));
+			return "redirect:/user/qnaList";
+		}
+		if (Objects.nonNull(session.getAttribute("user")) && !vo.isAdmin()) {
+			model.addAttribute("list", service.qnaList(bizNo));
+			return "r/user/userQnAList";
+		}
+		return "";
+	}
+	
 }

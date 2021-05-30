@@ -59,13 +59,12 @@ select b.*, u.* from united_board b, user u where b.bizNo = u.bizNo;
 set sql_safe_updates = 0;
 delete from user where bizNo='6429200358';
 delete from united_board where bizNo='0';
-drop table u6429200358;
 alter table user change phoneNo corpPhoneNo varchar(12);
 alter table united_board modify temp varchar(5) not null;
 select * from united_board;
 select u.corpName, u.corpPhoneNo, b.name, b.addr, b.phoneNo, b.regdate
 from user u, united_board b 
-where u.bizNo = b.bizNo and (b.temp < 35.5 or b.temp > 37.5) and b.regdate >= curdate();
+where u.bizNo = b.bizNo and (b.temp < 35.5 or b.temp > 37.5) and b.regdate >= curdate() order by regdate desc;
 alter table united_board modify regdate datetime;
 alter table united_board modify updateDate datetime;
 alter table united_board modify status varchar(10) default "신규";
@@ -82,3 +81,10 @@ show variables where variable_name like '%log%';
 drop table u0000000000;
 select * from user;
 update united_board set status = "완료", updateDate = now() where bno = "99";
+select * from united_board;
+select rn, name, addr, phoneNo, temp, regdate, updateDate, status from
+(select @rownum:=@rownum+1 as rn, u.* from united_board u, (select @rownum:=0) as tmp where bizNo = "6429200357" and regdate like "%2021-05-17%") as t;
+select * from united_board;
+select * from user where bizNo like "%그린%" or corpName like "%그린%";
+select * from user where (bizNo like "%%" or corpName like "%%") and bizNo not in("admin");
+SELECT DATE_FORMAT(regdate,'%Y-%m-%d') daily, COUNT(*) cnt FROM united_board GROUP BY daily; -- 일자 별 발생 횟수

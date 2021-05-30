@@ -30,14 +30,14 @@
                 </div>
             </div>
 			
-            <div class="col-12">
+            <div class="col-12 bizNoContainer">
               <label for="bizNo" class="form-label">사업자 번호 (ID)</label>            
                 <input type="text" class="form-control" id="bizNo" name="bizNo" placeholder="" value="" required>
                 
-                <div class="chk invalid-feedback">
+                <div class="chk invalid-feedback col-lg-6">
                  	사업자 번호는 필수 입력입니다.
                 </div>
-                <div></div><div></div>
+                <div class="col-lg-6"></div>
             </div>
 
             <div class="col-12">
@@ -57,18 +57,44 @@
                 	주소는 필수 입력입니다.
               </div>
             </div>
-            <div class="col-sm-10">
+            <div class="col-sm-8">
               <label for="url" class="form-label">url</label>
-              <input type="text" class="form-control" id="url" name="url" placeholder="" value="">
+              <input type="text" class="form-control" id="url" name="url" placeholder="오른쪽 매뉴얼 버튼을 눌러 입력 방법을 확인해주세요" value="">
                 <div class="chk invalid-feedback">
-                	주소는 필수 입력입니다.
+                	url은 필수 입력입니다.
               </div>
             </div>
             <div class="col-sm-2">
-              <label for="link" class="form-label">구글 지도</label>
+              <label for="manualBtn" class="form-label">매뉴얼</label>
+              <input type="button" class="w-100 btn btn-primary" id="manualBtn" value="매뉴얼">
+	              <div class="modal fade" id="manual" tabindex="-1" role="dialog">
+					  <div class="modal-dialog modal-lg" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					      	<h4 class="modal-title">url 입력 방법</h4>
+					        <button type="button" class="btn btn-default close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					      </div>
+					      <div class="modal-body">
+					        <p>1. 사업장 주소입력 후	2. 지도 링크 버튼 '클릭'</p>
+					        <img src="/resources/img/urlstep1.png">
+					        <p>3.실제 위치와 동일한지 확인 후 4. 지도 로딩이 완료되면 빨간색 사각형 안의 내용을 '오른쪽 클릭 후 복사'</p>
+					        <img src="/resources/img/urlstep2.png">
+					        <p>5. 원래 페이지로 돌아와 url 항목에 '붙여넣기' 6. 위도 경도에 값이 들어있는지 확인 후 진행</p>
+					        <img src="/resources/img/urlstep3.png">
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-default close" data-dismiss="modal">닫기</button>
+					      </div>
+					    </div><!-- /.modal-content -->
+					  </div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+            </div>
+            <div class="col-sm-2">
+              <label for="linkBtn" class="form-label">지도</label>
               <input type="button" class="w-100 btn btn-primary" id="linkBtn" value="링크"><a href="#" id="link"></a>
               
             </div>
+            
             
             <div class="col-sm-6">
               <label for="lati" class="form-label">위도</label>
@@ -115,7 +141,7 @@
 
           <hr class="my-4">
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+          <button class="w-100 btn btn-primary btn-lg" type="submit">사업자 초기 정보 등록</button>
          
         </form>
       </div>

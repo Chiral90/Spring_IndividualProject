@@ -199,7 +199,10 @@ function nk() {
 	var socket = io('http://localhost:3000/');
 	var lati = window.parent.lati.value;
 	var longi = window.parent.longi.value;
-	socket.emit("status", "warning", lati, longi);
+	var corpName = window.parent.corpName.value;
+	var corpPhoneNo = window.parent.corpPhoneNo.value;
+	
+	socket.emit("status", "warning", lati, longi, corpName, corpPhoneNo);
 	
 	setTimeout(function() {
 		parent.document.location.reload();

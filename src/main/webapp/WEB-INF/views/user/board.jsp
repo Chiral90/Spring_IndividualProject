@@ -32,7 +32,7 @@
         </div>
       </div>
       
-      <div class="table-responsive">
+	<div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
             <tr>
@@ -42,24 +42,25 @@
               <th>연락처</th>
               <th>체온</th>
               <th>방문시각</th>
+              <th>처리시각</th>
+              <th>처리 결과</th>
+            </tr>
           </thead>
           <tbody>
               <c:forEach items="${list}" var="board">
 	           	<tr>
-	           		<td><c:out value="${board.bno }" /></td>
+	           		<td><c:out value="${board.rn }" /></td>
 	           		<td><c:out value="${board.name }" /></td>
 	           		<td><c:out value="${board.addr }" /></td>
 	           		<td><c:out value="${board.phoneNo }" /></td>
 	           		<td><c:out value="${board.temp }" /></td>
 	           		<td><c:out value="${board.regdate }" /></td>
+	           		<td><c:out value="${board.updateDate }" /></td>
+	           		<td><c:out value="${board.status }" /></td>
 	           	</tr>
 	           </c:forEach>
           </tbody>
         </table>
       </div>
-    </main>
-    </div>
-<form id="dailyList"><input name="regdate" type="hidden" value="${param.regdate }"></form>
-
   </body>
 </html>

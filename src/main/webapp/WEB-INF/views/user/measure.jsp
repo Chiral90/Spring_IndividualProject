@@ -21,7 +21,7 @@ var socket = io('http://localhost:3000/');
 
 <main>
 <style>body {padding: 0 0;}</style>
-  <div id="myCarousel" class="carousel slide">
+  <div id="myCarousel" class="carousel slide" data-bs-ride="false" data-bs-touch="false" data-bs-interval="false"> <!-- 캐러셀 오류나면 data-bs-touch="false" data-bs-interval="false" 삭제 -->
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -56,7 +56,7 @@ var socket = io('http://localhost:3000/');
         <div class="container">
           <div class="carousel-caption">
           <!-- div class="carousel-caption text-end"> -->
-            <h1>정상입니다</h1>
+            <h1>step3. 정상입니다</h1>
             </div>
         </div>
       </div>
@@ -66,7 +66,7 @@ var socket = io('http://localhost:3000/');
         <rect width="100%" height="100%"><img id="retry" class="img-responsive img-circle center-block" src="/resources/img/retry.png"></rect></svg>
         <div class="container">
           <div class="carousel-caption">
-            <h1>다시 측정하세요</h1>
+            <h1>step3-1. 다시 측정하세요</h1>
           </div>
         </div>
       </div>
@@ -125,14 +125,7 @@ var socket = io('http://localhost:3000/');
   <!-- 인서트 테스트 영역 -->
 
   
-  	<div class="test">
-  	  <style>
-    .test main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    }
-    </style>
+  	<div class="test col-lg-12">
   <main>
     <div class="py-5 text-center">
       <!-- <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
@@ -151,6 +144,8 @@ var socket = io('http://localhost:3000/');
               <label for="bizNo" class="form-label">사업자 번호</label>
               <div class="input-group has-validation">
                 <input type="text" class="form-control" id="bizNo" name="bizNo" value="${user.bizNo }" readonly>
+                <input type="hidden" id="corpName" name="corpName" value="${user.corpName }">
+                <input type="hidden" id="corpPhoneNo" name="corpPhoneNo" value="${user.corpPhoneNo }">
                 <input type="hidden" id="lati" name="lati" value="${user.lati }">
                 <input type="hidden" id="longi" name="longi" value="${user.longi }">
                 <input type="hidden" id="cnt" name="cnt" value="1">

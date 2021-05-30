@@ -17,9 +17,10 @@ $(document).ready(function(){
 	}
 	
 	// 자바스크립트단에서 별도로 세션생성해서 로그인/로그아웃 처리
-	var status = sessionStorage.getItem("status");
+	//var status = sessionStorage.getItem("status");
 	//console.log(status);
-	if (status == "signin") {
+	var status = $("input[name='bizNo']").val();
+	if (status != "") {
 		$("#sign").html("로그아웃");
 		var f = $("#form");
 		$("#sign").on("click", function(e){

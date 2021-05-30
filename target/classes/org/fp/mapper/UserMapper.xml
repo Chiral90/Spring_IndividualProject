@@ -66,8 +66,24 @@
 	<!-- 업체 별 기록 -->
 	<select id="dailyList" resultType="org.fp.domain.BoardVO" parameterType="org.fp.domain.BoardVO">
 		<![CDATA[
-			select * from united_board where bizNo = #{bizNo} and regdate like #{regdate}
+			select rn, name, addr, phoneNo, temp, regdate, updateDate, status from
+				(select @rownum:=@rownum+1 as rn, u.* from united_board u, (select @rownum:=0) as tmp where bizNo = #{bizNo} and regdate like #{regdate}) as t;
 		]]>
+	</select>
+	
+	<!-- 유저 검색 -->
+	<select id="searchUser" resultType="org.fp.domain.UserVO" parameterType="string">
+		select * from user where (bizNo like #{keyword} or corpName like #{keyword}) and bizNo not in("admin")
+	</select>
+	
+	<!-- qna 게시판 -->
+	<insert id="qnaInsert">
+		insert into qna_board (category, bizNo, title, content, regdate)
+		values (#{category}, #{bizNo}, #{title}, #{content}, now())
+	</insert>
+	
+	<select id="qnaList" resultType="org.fp.domain.QnaVO">
+		select * from qna_board where bizNo like #{bizNo}
 	</select>
 
 </mapper>

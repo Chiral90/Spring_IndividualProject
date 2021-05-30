@@ -20,7 +20,7 @@
 	<link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="/resources/css/userList.css">
 	<style>
-		.btn {position: fixed;
+		.close {position: fixed;
 			top: 50px;
 			right: 50px;}
     </style>
@@ -32,6 +32,13 @@
         <h1 class="h2">등록 업체 리스트</h1>
         
       </div>
+      <div class="input-group">
+		  <form class="col-sm-8" id="searchForm" action="/user/searchUser" method="get"><input name="keyword" type="text" class="form-control col-sm-6" placeholder="사업자 번호 / 상호명 검색"></form>
+		  <span class="input-group-btn">
+		    <button class="btn btn-secondary" type="button">찾기</button>
+		    <script>$(document).ready(function(){$(".btn-secondary").on("click", function(){$("#searchForm").submit();})})</script>
+		  </span>
+	  </div>
       
       <div class="table-responsive">
         <table class="table table-striped table-sm">

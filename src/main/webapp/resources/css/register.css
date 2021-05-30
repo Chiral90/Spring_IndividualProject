@@ -1,4 +1,17 @@
 @charset "UTF-8";
-
-
+.modal-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+}
+img {
+	max-width: 100%;
+	height: auto;
+	/* 
+	overflow: visible;
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 0;
+	 */
+}
 
