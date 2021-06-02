@@ -8,18 +8,12 @@ function callChart() {
 	var waited = 0;
 	var occured = 0;
 	var stat = document.querySelectorAll("td.status");
-	//console.log(stat);
 	stat.forEach(function(item){
-		//console.log(item.innerHTML);
 		if (item.innerHTML == "완료") completed += 1;
 		if (item.innerHTML == "불응") notAns += 1;
 		if (item.innerHTML == "발생") occured += 1;
 		if (item.innerHTML == "대기") waited += 1;
 		});
-	//console.log("완료 : " + completed);
-	//console.log("불응 : " + notAns);
-	//console.log("대기 : " + waited);
-	//console.log("발생 : " + occured);
 	
 	const data = {
 			  labels: [
@@ -60,7 +54,6 @@ function callChart() {
 		    config
 		  );
 	const actions = [
-		  
 		{
 		    name: 'Title Position: center (default)',
 		    handler(chart) {
@@ -79,6 +72,7 @@ function callChart() {
 		];
 }
 //chart js end
+
 function mapMover() {
 	$(".mover").click(function(e){
 		e.preventDefault();
@@ -119,6 +113,7 @@ function mapMover() {
 		infowindow.open(map, marker);
 	});
 }
+
 function statusCss() {
 	$(".status").each(function(){
 		if ($(this).html() == "불응") {

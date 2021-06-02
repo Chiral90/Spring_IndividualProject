@@ -60,12 +60,14 @@ public class UserController {
 			log.info("null 여부 : " + Objects.nonNull(vo));
 			if (Objects.nonNull(vo)) { //db에 해당 정보의 유저가 있으면
 				log.info("세션 변수에 저장");
-				session.setAttribute("user", vo); // 세션 변수 user에 vo를 저장하고
 				if (vo.getBizNo().equals("admin")) { // 관리자 계정이면
 					vo.setAdmin(true);
-					log.info("로그인 성공");
+					session.setAttribute("user", vo); // 세션 변수 user에 vo를 저장
+					log.info("관리자 로그인 성공");
+					log.info("vo : " + vo + " @Controller");
 					return "redirect:/user/monitoring"; // 모니터링 페이지로 이동
 				}
+				session.setAttribute("user", vo); // 세션 변수 user에 vo를 저장
 				log.info("일반 유저 로그인"); // 관리자 계정이 아니면
 				log.info("세션 변수 정보 : " + session.getAttribute("user"));
 				return "redirect:/user/measure"; // 측정 페이지로 이동

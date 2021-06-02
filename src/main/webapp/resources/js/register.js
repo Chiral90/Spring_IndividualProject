@@ -53,7 +53,8 @@ $(document).ready(function(){
 		if (
 				/^\d{3}-\d{2}-\d{5}$/.test(inputBizNo) ||
 				/^\d{3}-?\d{2}-\d{5}$/.test(inputBizNo) ||
-				/^\d{3}-\d{2}-?\d{5}$/.test(inputBizNo)) {
+				/^\d{3}-\d{2}-?\d{5}$/.test(inputBizNo) ||
+				/^\d{3}-?\d{2}-?\d{5}$/.test(inputBizNo)) {
 			var bizNo = inputBizNo.replaceAll("-", ""); // 자동으로 '-' 없애줌
 			var chkData = {bizNo : bizNo};
 			$.ajax({
