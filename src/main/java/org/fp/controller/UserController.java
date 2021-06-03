@@ -250,7 +250,7 @@ public class UserController {
 	
 	@GetMapping({"/userQnaList", "/adminQnaList"})
 	public void qnaList(Model model, Criteria cri) {
-		log.info("qnaList");
+		log.info("qnaList, cri ->" + cri);
 		model.addAttribute("list", service.qnaList(cri));
 		int total = service.totalCnt();
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
