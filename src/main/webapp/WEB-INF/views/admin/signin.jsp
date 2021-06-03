@@ -1,4 +1,4 @@
-<%@ include file="../includes/header.jsp" %>
+<%@ include file="../includes/adminHeader.jsp" %>
 <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 <link href="/resources/css/form-validation.css" rel="stylesheet">

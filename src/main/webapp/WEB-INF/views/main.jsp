@@ -26,7 +26,7 @@
     <link href="/resources/css/main_custom.css" rel="stylesheet">
     
     <body class="d-flex h-100 text-center text-white bg-dark"
-    style="background-image: url('/resources/img/main.jpg');
+    style="background-image: url('/resources/img/main2.jpg');
 		    background-repeat: no-repeat;
 			background-position: center;
 			background-size: cover;
@@ -35,6 +35,7 @@
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 
   <main class="px-3">
+  <svg><circle fill="transparent" /></svg>
     <h1>최초 정보 등록</h1>
     <p class="lead">처음 방문한 사업자는 최초 정보 등록</p>
     <p class="lead">
@@ -60,6 +61,12 @@
 
 
 </div>
+<script>
+	$(document).ready(function(){
+		console.log($("svg"));
+		$("svg").hide();
+	})
+</script>
     
 <!-- 
   <body class="d-flex h-100 text-center text-white bg-dark">

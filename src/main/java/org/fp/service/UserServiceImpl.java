@@ -1,8 +1,11 @@
 package org.fp.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.fp.domain.BoardVO;
+import org.fp.domain.Criteria;
+import org.fp.domain.QnaVO;
 import org.fp.domain.UserVO;
 import org.fp.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +22,7 @@ public class UserServiceImpl implements UserService {
 	@Setter(onMethod_ = @Autowired)
 	private UserMapper mapper;
 	
-	@Transactional // 유저 등록과 동시에 사업자 번호의 테이블이 생성
+	@Transactional // 유저 등록과 동시에 사업자 번호의 테이블이 생성 - 현재 미사용
 	public void registerUser(UserVO user, String sql) {
 		log.info("create user table....");
 		mapper.createUserTable(sql);
@@ -38,9 +41,10 @@ public class UserServiceImpl implements UserService {
 		return result;
 	}
 	
-	public void insertData(BoardVO board) {
+	public int insertData(BoardVO board) {
 		log.info("insert customer data...." + board);
-		mapper.insertData(board);
+		int result = mapper.insertData(board);
+		return result;
 	}
 	
 	public UserVO login(UserVO user) {
@@ -48,13 +52,58 @@ public class UserServiceImpl implements UserService {
 		return mapper.login(user);
 	}
 	
-	public List<BoardVO> boardList(UserVO user) {
-		log.info("board list...." + user.getCorpName());
-		return mapper.boardList(user);
+	public List<BoardVO> boardList(BoardVO vo) {
+		log.info("board list...." + vo.getBizNo());
+		return mapper.boardList(vo);
 	}
-	
+	/*
+	public List<BoardVO> specificDate(BoardVO vo) {
+		log.info("specific date list..." + vo.getBizNo() + " at " + vo.getRegdate());
+		return mapper.specificDate(vo);
+	}
+	*/
 	public List<BoardVO> monitorList() {
 		log.info("monitor list....");
 		return mapper.monitorList();
+	}
+	
+	public List<UserVO> userList() {
+		return mapper.userList();
+	}
+	
+	public void updateStatus(Map map) {
+		mapper.updateStatus(map);
+	}
+	
+	public List<BoardVO> dailyList(BoardVO vo) {
+		return mapper.dailyList(vo);
+	}
+	
+	public List<UserVO> searchUser(String keyword) {
+		return mapper.searchUser(keyword);
+	}
+	
+	public List<QnaVO> qnaList(Criteria cri) {
+		return mapper.qnaList(cri);
+	}
+	
+	public int totalCnt() {
+		return mapper.totalCnt();
+	}
+	
+	public int qnaRegister(QnaVO vo) {
+		return mapper.qnaRegister(vo);
+	}
+	
+	public QnaVO qnaDetail(int qno) {
+		return mapper.qnaDetail(qno);
+	}
+	
+	public int qnaUpdate(QnaVO vo) {
+		return mapper.qnaUpdate(vo);
+	}
+	
+	public int qnaDelete(QnaVO vo) {
+		return mapper.qnaDelete(vo);
 	}
 }

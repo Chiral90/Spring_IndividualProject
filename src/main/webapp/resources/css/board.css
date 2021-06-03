@@ -8,3 +8,10 @@
 main {
 	margin: auto auto;
 }
+.btn-toolbar {
+	justify-content: space-between;
+}
+
+.input-group-text {
+	height: 100%;
+}

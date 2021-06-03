@@ -1,4 +1,4 @@
-<%@ include file="../includes/header.jsp" %>
+<%@ include file="../includes/userHeader.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
@@ -6,14 +6,22 @@
 <link href="/resources/css/bootstrap.min.css" rel="stylesheet">    
 <!-- Custom styles for this template -->
 <link href="/resources/css/carousel.css" rel="stylesheet">
+<link href="/resources/css/measure.css" rel="stylesheet">
 <!-- Custom js -->
 <script type="text/javascript" src="/resources/js/measure.js"></script>
+<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script>
+var socket = io('http://localhost:3000/');
+//socket.on("hello", (arg) => {
+//	console.log(arg);
+//});
+</script>
 
   <body>
 
 <main>
 <style>body {padding: 0 0;}</style>
-  <div id="myCarousel" class="carousel slide">
+  <div id="myCarousel" class="carousel slide" data-bs-ride="false" data-bs-touch="false" data-bs-interval="false"> <!-- 캐러셀 오류나면 data-bs-touch="false" data-bs-interval="false" 삭제 -->
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -22,7 +30,8 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <rect width="100%" height="100%"><img id="qr" class="img-responsive img-circle center-block" src="/resources/img/qr.jpg"></rect></svg>
         <div class="container">
           <div class="carousel-caption">
           <!-- <div class="carousel-caption text-start"> -->
@@ -32,7 +41,8 @@
       </div>
      
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <rect width="100%" height="100%"><img id="measure" class="img-responsive img-circle center-block" src="/resources/img/measure.png"></rect></svg>
         <div class="container">
           <div class="carousel-caption">
             <h1>step2. 센서에 손목을 밀착시켜 주세요</h1>
@@ -41,33 +51,36 @@
       </div>
       
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <rect width="100%" height="100%"><img id="ok" class="img-responsive img-circle center-block" src="/resources/img/ok.png"></rect></svg>
         <div class="container">
           <div class="carousel-caption">
           <!-- div class="carousel-caption text-end"> -->
-            <h1>정상입니다</h1>
+            <h1>step3. 정상입니다</h1>
             </div>
         </div>
       </div>
       
       <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <rect width="100%" height="100%"><img id="retry" class="img-responsive img-circle center-block" src="/resources/img/retry.png"></rect></svg>
         <div class="container">
           <div class="carousel-caption">
-            <h1>다시 측정하세요</h1>
+            <h1>step3-1. 다시 측정하세요</h1>
           </div>
         </div>
       </div>
       
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    
+    <!-- <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
-    </button>
+    </button> -->
   </div>
 
   <!-- Marketing messaging and featurettes
@@ -112,14 +125,7 @@
   <!-- 인서트 테스트 영역 -->
 
   
-  	<div class="test">
-  	  <style>
-    .test main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    }
-    </style>
+  	<div class="test col-lg-12">
   <main>
     <div class="py-5 text-center">
       <!-- <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
@@ -138,6 +144,11 @@
               <label for="bizNo" class="form-label">사업자 번호</label>
               <div class="input-group has-validation">
                 <input type="text" class="form-control" id="bizNo" name="bizNo" value="${user.bizNo }" readonly>
+                <input type="hidden" id="corpName" name="corpName" value="${user.corpName }">
+                <input type="hidden" id="corpPhoneNo" name="corpPhoneNo" value="${user.corpPhoneNo }">
+                <input type="hidden" id="lati" name="lati" value="${user.lati }">
+                <input type="hidden" id="longi" name="longi" value="${user.longi }">
+                <input type="hidden" id="cnt" name="cnt" value="1">
               </div>
 			<div class="col-12">
               <label for="name" class="form-label">이름</label>

@@ -1,19 +1,17 @@
 @charset "UTF-8";
-
-/* 
-.input-group {
-	width: 100%;
+.modal-body {
+	display: flex;
 	flex-direction: column;
+	justify-content: start;
 }
-.form-control {
-	width: 100%;
-	display: block;
+img {
+	max-width: 100%;
+	height: auto;
+	/* 
+	overflow: visible;
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 0;
+	 */
 }
-
-.chk {
-	width: 50%;
-	display: inline-block;
-}
- */
-
 

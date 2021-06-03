@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 Manifest-Version: 1.0
 Built-By: Chiral
 Build-Jdk: 1.8.0_281
 Created-By: Maven Integration for Eclipse
 
+=======
+Manifest-Version: 1.0
+Built-By: GreenArt
+Build-Jdk: 1.8.0_261
+Created-By: Maven Integration for Eclipse
+
+>>>>>>> branch 'academy' of https://github.com/Chiral90/Spring_IndividualProject

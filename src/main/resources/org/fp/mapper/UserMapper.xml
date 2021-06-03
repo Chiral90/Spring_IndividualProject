@@ -23,8 +23,8 @@
 	
 	<!-- 방문객 데이터 등록 -->
 	<insert id="insertData">
-		insert into united_board (bizNo, name, addr, phoneNo, temp, regdate)
-		values ( #{bizNo}, #{name}, #{addr}, #{phoneNo}, #{temp}, now() )
+		insert into united_board (bizNo, name, addr, phoneNo, temp, regdate, status)
+		values ( #{bizNo}, #{name}, #{addr}, #{phoneNo}, #{temp}, now(), #{status} )
 	</insert>
 	
 	<!-- 로그인 세션용 조회 -->
@@ -33,20 +33,95 @@
 	</select>
 	
 	<!-- 오늘 방문 기록 -->
-	<select id="boardList" resultType="org.fp.domain.BoardVO" parameterType="org.fp.domain.UserVO">
+	<select id="boardList" resultType="org.fp.domain.BoardVO" parameterType="org.fp.domain.BoardVO">
 		<![CDATA[
-			select * from united_board where bizNo = #{bizNo} and regdate >= curdate()
+			select * from united_board where bizNo = #{bizNo} and regdate like #{regdate}
 		]]>
 	</select>
+	
+	<!-- 특정일 방문 기록 - 자바스크립트에서 String regdate 받아올 때 앞/뒤 % 붙일 것-->
+	<!-- <select id="specificDate" resultType="org.fp.domain.BoardVO" parameterType="org.fp.domain.BoardVO">
+			select * from united_board where bizNo = #{bizNo} and regdate like #{regdate}
+	</select> -->
 	
 	<!-- 이상 체온 리스트 -->
 	<select id="monitorList" resultType="org.fp.domain.DashBoardVO">
 		<![CDATA[
-			select u.corpName, u.corpPhoneNo, b.temp, b.name, b.addr, b.phoneNo, b.regdate, u.lati, u.longi
+			select u.corpName, u.corpPhoneNo, b.temp, b.name, b.addr, b.phoneNo, b.regdate, u.lati, u.longi, b.bno, b.status
 			from user u, united_board b 
-			where u.bizNo = b.bizNo and (b.temp < 35.5 or b.temp > 37.5) and b.regdate >= curdate()
+			where u.bizNo = b.bizNo and (b.temp < 35.5 or b.temp > 37.5) and b.regdate >= curdate() order by b.regdate desc
 		]]>
 	</select>
 	
+	<!-- 검출 로그 상태 업데이트 -->
+	<update id="updateStatus" parameterType="hashMap">
+		update united_board set status = #{status}, updateDate = now() where bno = #{bno}
+	</update>
+	
+	<!-- 유저 리스트 -->
+	<select id="userList" resultType="org.fp.domain.UserVO">
+		select bizNo, corpName, addr, corpPhoneNo, sectors from user where bizNo not in("admin")
+	</select>
+	
+	<!-- 업체 별 기록 -->
+	<select id="dailyList" resultType="org.fp.domain.BoardVO" parameterType="org.fp.domain.BoardVO">
+		<![CDATA[
+			select rn, name, addr, phoneNo, temp, regdate, updateDate, status from
+				(select @rownum:=@rownum+1 as rn, u.* from united_board u, (select @rownum:=0) as tmp where bizNo = #{bizNo} and regdate like #{regdate}) as t;
+		]]>
+	</select>
+	
+	<!-- 유저 검색 -->
+	<select id="searchUser" resultType="org.fp.domain.UserVO" parameterType="string">
+		select * from user where (bizNo like #{keyword} or corpName like #{keyword}) and bizNo not in("admin")
+	</select>
+	
+	<!-- qna 리스트 --> <!-- selectkey로 corpName 추가할 것 -->
+	<!-- <select id="qnaList" resultType="org.fp.domain.QnaVO">
+		<![CDATA[
+			select q.qno, q.bizNo, q.title, q.regdate, u.corpName from qna_board q, user u where q.bizNo=u.bizNo
+		]]>
+	</select> -->
+	
+	<!-- getListWithPaging ; 댓글 처리 전-->
+	<select id="qnaList" resultType="org.fp.domain.QnaVO">
+		<![CDATA[
+			select rn, qno, bizNo, title, regdate, corpName
+			from (
+				select @rownum:=@rownum+1 as rn, qno, title, content, bizNo, regdate, updatedate, corpName
+				from (select @rownum:=0) as tmp, qna_board order by qno desc
+			) qnaList
+			where rn > (#{pageNum} -1) * #{amount} and rn <= #{pageNum} * #{amount}
+		]]>
+	</select>
+	
+	<select id="totalCnt" resultType="int">
+		select count(*) from qna_board
+	</select>
+	
+	
+	<!-- qna 등록 -->
+	<insert id="qnaRegister" parameterType="org.fp.domain.QnaVO">
+		<selectKey keyProperty="corpName" order="BEFORE" resultType="string">
+			select corpName from user where bizNo = #{bizNo}
+		</selectKey>
+		insert into qna_board (bizNo, title, content, regdate, corpName)
+		values (#{bizNo}, #{title}, #{content}, DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s'), #{corpName})
+	</insert>
+	
+	<!-- qna 디테일 -->
+	<select id="qnaDetail" resultType="org.fp.domain.QnaVO">
+		select qno, bizNo, title, content, regdate, updateDate from qna_board where qno = #{qno}
+	</select>
+	
+	<!-- qna 수정 -->
+	<update id="qnaUpdate" parameterType="org.fp.domain.QnaVO">
+		update qna_board set title=#{title}, content=#{content}, updateDate=DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s') where qno = #{qno}
+	</update>
+	
+	<!-- qna 삭제 -->
+	<delete id="qnaDelete" parameterType="org.fp.domain.QnaVO">
+		delete from qna_board where bizNo=#{bizNo} and qno=#{qno}
+	</delete>
 
 </mapper>

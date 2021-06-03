@@ -4,28 +4,31 @@
 	justify-content: center;
 }
 .cover-container:nth-of-type(1) main:nth-of-type(1) {
-	padding: 150px 0;
+	padding: 230px 0;
 	/* background: gray; border-radius: 20px; */
-	background-image: url("/resources/img/screen.png");
+	border-radius: 330px;
+	background-image: url("/resources/img/cyberpunk4.jpg");
 	background-repeat: no-repeat;
 	background-position: center;
   	background-size: cover;
 	
 }
 .cover-container:nth-of-type(2) main:nth-of-type(1) {
-	padding: 150px 0;
+	padding: 230px 0;
 	/* background: green; border-radius: 20px; */
-	background-image: url("/resources/img/screen.png");
+	border-radius: 330px;
+	background-image: url("/resources/img/cyberpunk4.jpg");
 	background-repeat: no-repeat;
 	background-position: center;
   	background-size: cover;
 	
 }
-/* 
+
+
 .cover-container:nth-of-type(2) main:nth-of-type(2) {
 	background: yellow; padding: 0 0;
 }
- */
+
 .custom-1 {
 	width:500px;height:300px;
 	border: solid red;
