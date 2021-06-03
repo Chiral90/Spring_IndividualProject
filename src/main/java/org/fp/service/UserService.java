@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.fp.domain.BoardVO;
+import org.fp.domain.Criteria;
+import org.fp.domain.QnaVO;
 import org.fp.domain.UserVO;
 
 public interface UserService {
@@ -19,4 +21,10 @@ public interface UserService {
 	public void updateStatus(Map map);
 	public List<BoardVO> dailyList(BoardVO vo);
 	public List<UserVO> searchUser(String keyword);
+	public List<QnaVO> qnaList(Criteria cri);
+	public int totalCnt();
+	public int qnaRegister(QnaVO vo);
+	public QnaVO qnaDetail(int qno);
+	public int qnaUpdate(QnaVO vo);
+	public int qnaDelete(QnaVO vo);
 }

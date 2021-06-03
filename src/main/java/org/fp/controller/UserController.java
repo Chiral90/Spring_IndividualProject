@@ -1,7 +1,5 @@
 package org.fp.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -9,6 +7,9 @@ import java.util.Objects;
 import javax.servlet.http.HttpSession;
 
 import org.fp.domain.BoardVO;
+import org.fp.domain.Criteria;
+import org.fp.domain.PageDTO;
+import org.fp.domain.QnaVO;
 import org.fp.domain.UserVO;
 import org.fp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -245,5 +246,63 @@ public class UserController {
 		log.info("board list");
 		model.addAttribute("list", service.dailyList(vo));
 		
+	}
+	
+	@GetMapping({"/userQnaList", "/adminQnaList"})
+	public void qnaList(Model model, Criteria cri) {
+		log.info("qnaList");
+		model.addAttribute("list", service.qnaList(cri));
+		int total = service.totalCnt();
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+	}
+	
+	@GetMapping({"/userQnaRegister"})
+	public void qnaInsert(HttpSession session) {
+		if (Objects.nonNull(session.getAttribute("user"))) {
+		}
+	}
+	
+	@PostMapping({"/userQnaRegister"})
+	public String qnaInsert(QnaVO vo, HttpSession session) {
+		UserVO user = (UserVO) session.getAttribute("user");
+		if (user.getBizNo().equals(vo.getBizNo())) {
+			log.info("qnaRegister");
+			int result = service.qnaRegister(vo);
+			log.info("result : " + result);
+		}
+		return "redirect:/user/userQnaList";
+	}
+	
+	@GetMapping({"/userQnaDetail"})
+	public void qnaDetail(@RequestParam("qno") int qno, Model model) {
+		log.info("qnaDetail");
+		model.addAttribute("detail", service.qnaDetail(qno));
+	}
+	
+	@GetMapping({"/userQnaUpdate"})
+	public void qnaUpdate(@RequestParam("qno") int qno, Model model) {
+		log.info("qnaUpdate page");
+		model.addAttribute("detail", service.qnaDetail(qno));
+	}
+	@PostMapping({"/userQnaUpdate"})
+	public String qnaUpdate(QnaVO vo) {
+		log.info("qnaUpdate" + vo);
+		int result = service.qnaUpdate(vo);
+		int qno = vo.getQno();
+		log.info("result : " + result);
+		return "redirect:/user/userQnaDetail?qno="+qno;
+	}
+	@PostMapping({"/userQnaDelete"})
+	public String qnaDelete(QnaVO vo, HttpSession session) {
+		UserVO user = (UserVO) session.getAttribute("user");
+		log.info("vo : " + vo.getBizNo());
+		log.info("session : " + user.getBizNo());
+		if (user.getBizNo().equals(vo.getBizNo())) {
+			log.info("qnaDelete");
+			int result = service.qnaDelete(vo);
+			log.info("result : " + result);
+		}
+		
+		return "redirect:/user/userQnaList";
 	}
 }

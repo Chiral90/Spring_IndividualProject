@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.fp.domain.BoardVO;
+import org.fp.domain.Criteria;
+import org.fp.domain.QnaVO;
 import org.fp.domain.UserVO;
 import org.fp.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,5 +81,29 @@ public class UserServiceImpl implements UserService {
 	
 	public List<UserVO> searchUser(String keyword) {
 		return mapper.searchUser(keyword);
+	}
+	
+	public List<QnaVO> qnaList(Criteria cri) {
+		return mapper.qnaList(cri);
+	}
+	
+	public int totalCnt() {
+		return mapper.totalCnt();
+	}
+	
+	public int qnaRegister(QnaVO vo) {
+		return mapper.qnaRegister(vo);
+	}
+	
+	public QnaVO qnaDetail(int qno) {
+		return mapper.qnaDetail(qno);
+	}
+	
+	public int qnaUpdate(QnaVO vo) {
+		return mapper.qnaUpdate(vo);
+	}
+	
+	public int qnaDelete(QnaVO vo) {
+		return mapper.qnaDelete(vo);
 	}
 }

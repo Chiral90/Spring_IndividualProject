@@ -75,5 +75,53 @@
 	<select id="searchUser" resultType="org.fp.domain.UserVO" parameterType="string">
 		select * from user where (bizNo like #{keyword} or corpName like #{keyword}) and bizNo not in("admin")
 	</select>
+	
+	<!-- qna 리스트 --> <!-- selectkey로 corpName 추가할 것 -->
+	<!-- <select id="qnaList" resultType="org.fp.domain.QnaVO">
+		<![CDATA[
+			select q.qno, q.bizNo, q.title, q.regdate, u.corpName from qna_board q, user u where q.bizNo=u.bizNo
+		]]>
+	</select> -->
+	
+	<!-- getListWithPaging ; 댓글 처리 전-->
+	<select id="qnaList" resultType="org.fp.domain.QnaVO">
+		<![CDATA[
+			select rn, qno, bizNo, title, regdate, corpName
+			from (
+				select @rownum:=@rownum+1 as rn, qno, title, content, bizNo, regdate, updatedate, corpName
+				from (select @rownum:=0) as tmp, qna_board order by qno desc
+			) qnaList
+			where rn > (#{pageNum} -1) * #{amount} and rn <= #{pageNum} * #{amount}
+		]]>
+	</select>
+	
+	<select id="totalCnt" resultType="int">
+		select count(*) from qna_board
+	</select>
+	
+	
+	<!-- qna 등록 -->
+	<insert id="qnaRegister" parameterType="org.fp.domain.QnaVO">
+		<selectKey keyProperty="corpName" order="BEFORE" resultType="string">
+			select corpName from user where bizNo = #{bizNo}
+		</selectKey>
+		insert into qna_board (bizNo, title, content, regdate, corpName)
+		values (#{bizNo}, #{title}, #{content}, DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s'), #{corpName})
+	</insert>
+	
+	<!-- qna 디테일 -->
+	<select id="qnaDetail" resultType="org.fp.domain.QnaVO">
+		select qno, bizNo, title, content, regdate, updateDate from qna_board where qno = #{qno}
+	</select>
+	
+	<!-- qna 수정 -->
+	<update id="qnaUpdate" parameterType="org.fp.domain.QnaVO">
+		update qna_board set title=#{title}, content=#{content}, updateDate=DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s') where qno = #{qno}
+	</update>
+	
+	<!-- qna 삭제 -->
+	<delete id="qnaDelete" parameterType="org.fp.domain.QnaVO">
+		delete from qna_board where bizNo=#{bizNo} and qno=#{qno}
+	</delete>
 
 </mapper>
