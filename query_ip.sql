@@ -1,24 +1,7 @@
 create database ip;
 use ip;
-create table [6429200357]
-([1col] int, [2col] int, [3col] int, [4col] int, [5col] int, [6col] int,
-[7col] int, [8col] int, [9col] int, [10col] int) (
-	bno long primary key auto_increment,
-    name varchar(20),
-    addr varchar(100),
-    phoneNo varchar(12),
-    regdate date,
-    updateDate date
-);
-
-create table u6429200357 (
-	bno long primary key auto_increment,
-    name varchar(20),
-    addr varchar(100),
-    phoneNo varchar(12),
-    regdate date,
-    updateDate date
-);
+desc user;
+desc united_board;
 
 create table user (
 	bizNo varchar(10) primary key, -- not null,
@@ -30,7 +13,6 @@ create table user (
     corpPhoneNo varchar(12),
     sectors varchar(12)
 );
-drop table user;
 desc user;
 
 select * from user;
@@ -47,6 +29,7 @@ create table united_board (
     updateDate date,
     status varchar(10)
 );
+alter table united_board ADD CONSTRAINT FK_bizNo FOREIGN KEY (bizNo) REFERENCES user (bizNo);
 alter table united_board add status varchar(10);
 select * from user where bizNo = 'admin' and pw = '1111';
 desc united_board;
@@ -88,3 +71,37 @@ select * from united_board;
 select * from user where bizNo like "%그린%" or corpName like "%그린%";
 select * from user where (bizNo like "%%" or corpName like "%%") and bizNo not in("admin");
 SELECT DATE_FORMAT(regdate,'%Y-%m-%d') daily, COUNT(*) cnt FROM united_board GROUP BY daily; -- 일자 별 발생 횟수
+select json_object(DATE_FORMAT(regdate,'%Y-%m-%d') daily, COUNT(*) cnt) FROM united_board GROUP BY daily;
+delete from user where bizNo='1232256487';
+
+create table qna_board (
+	qno int primary key auto_increment,
+    bizNo varchar(10) not null,
+    corpName varchar(20) not null,
+    title varchar(50) not null,
+    content varchar(1000) not null,
+    regdate datetime,
+    updatedate datetime
+);
+alter table qna_board add corpName varchar(20) not null;
+desc qna_board;
+alter table qna_board ADD CONSTRAINT FK_bizNo_qna FOREIGN KEY (bizNo) REFERENCES user (bizNo);
+insert into qna_board (bizNo, title, content, regdate, corpName) values ('0000000000', 'title1', 'content1', DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s'), '집');
+select * from qna_board;
+update qna_board set title="title update", content="content update", updateDate=DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s') where qno = 1;
+delete from qna_board where bizNo="0000000000" and qno=1;
+insert into qna_board (bizNo, title, content, corpName) select bizNo, title, content, corpName from qna_board;
+
+select rn, qno, bizNo, title, regdate, corpName
+			from (
+				select @rownum:=@rownum+1 as rn, q.qno, q.title, q.content, q.bizNo, q.regdate, q.updatedate, u.corpName
+				from (select @rownum:=0) as tmp, qna_board q, user u where q.bizNo = u.bizNo order by qno desc
+			) qnaList
+			where rn > 0 and rn <= 10;
+            
+select rn, qno, bizNo, title, regdate, corpName
+			from (
+				select @rownum:=@rownum+1 as rn, qno, title, content, bizNo, regdate, updatedate, corpName
+				from (select @rownum:=0) as tmp, qna_board order by qno desc
+			) qnaList
+			where rn > 0 and rn <= 10;
